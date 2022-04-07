@@ -37,6 +37,7 @@ class Tesseract: ObservableObject {
     
     private func resetGrid() {
         self.grid = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
+        self.player = .cross
     }
     
     public func reset(_ option: resetOption) {
@@ -48,8 +49,6 @@ class Tesseract: ObservableObject {
         print(self.grid)
     }
     
-    
     static let global = Tesseract()
-    
     private init() {}
 }
