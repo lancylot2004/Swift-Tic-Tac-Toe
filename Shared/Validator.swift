@@ -13,44 +13,48 @@ enum gridState {
 }
 
 class Validator {
+    private var tess: Tesseract = Tesseract.global
+    
     private var grid: Array<Array<squareState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
     func setGrid(_ grid: Array<Array<squareState>>) {
         // No safety checks - stupid, yes.
         self.grid = grid
     }
     
-    func processSet(_ set: Array<squareState>) -> gridState? {
-            if set.count == 1 {
-                return set[0] == .cross ? .crossVictory : .noughtVictory
+    func processSet(_ set: Array<squareState>) {
+        if set.count == 1 {
+            switch set[0] {
+            case .cross: tess.crossScore += 1
+            case .nought: tess.noughtScore += 1
+            case .none: break
             }
-        
-            return nil
         }
+    }
     
-    func checkGrid() -> gridState {
+    func checkGrid() {
         // Horizontal Checks
         for row in grid {
             let rowSet = Array(Set(row))
-            if let result = self.processSet(rowSet) { return result }
+            self.processSet(rowSet)
         }
         
         // Vertical Checks
         for i in 0..<3 {
             let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
-            if let result = self.processSet(columnSet) { return result }
+            self.processSet(columnSet)
         }
         
         // Diagonal Checks
         let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
-        if let result = self.processSet(leftToRightSet) { return result }
+        self.processSet(leftToRightSet)
         
         let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
-        if let result = self.processSet(rightToLeftSet) { return result }
+        self.processSet(rightToLeftSet)
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
-        if !allSet.contains(.none) { return .draw }
+        // if !allSet.contains(.none) { return .draw }
         
-        return .ongoing
+        return
     }
     
     static let global = Validator()

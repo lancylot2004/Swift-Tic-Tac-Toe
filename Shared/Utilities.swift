@@ -24,7 +24,9 @@ enum resetOption {
 }
 
 class Tesseract: ObservableObject {
-    @Published var grid: Array<Array<squareState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
+    @Published var grid: Array<Array<squareState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]] {
+        didSet { Validator.global.setGrid(self.grid) }
+    }
     @Published var player: playerState = .cross
     
     @Published var crossScore: Int = 0

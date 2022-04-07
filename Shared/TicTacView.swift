@@ -53,6 +53,8 @@ struct TicTacView: View {
                     
                     tess.grid[row][column] = self.state
                     tess.player = tess.player == .cross ? .nought : .cross
+                    
+                    Validator.global.checkGrid()
                 }) {
                     Rectangle()
                         .frame(width: 75, height: 75)
