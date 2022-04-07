@@ -22,7 +22,7 @@ struct PlayerScoreView: View {
             
             HStack(spacing: 0) {
                 ZStack {
-                    Text(String(tess.crossScore))
+                    Text(String(self.state == .cross ? tess.crossScore : tess.noughtScore))
                         .font(.system(size: 65, weight: .bold, design: .rounded))
                     
                     Rectangle()
