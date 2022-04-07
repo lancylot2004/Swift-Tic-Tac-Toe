@@ -28,6 +28,8 @@ class Validator {
             case .nought: tess.noughtScore += 1; return true
             case .none: return false
             }
+        } else {
+            return false
         }
     }
     
@@ -52,7 +54,7 @@ class Validator {
         if self.processSet(rightToLeftSet) { return }
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
-        if !allSet.contains(.none) { tess.drawScore += 1 }
+        if !allSet.contains(.none) { tess.drawScore += 1; return }
         
         return
     }
