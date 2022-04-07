@@ -14,6 +14,8 @@ struct TicTacView: View {
     private var column: Int
     @State private var state: squareState = .none
     
+    private var transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.3)).combined(with: .scale.animation(.easeInOut(duration: 0.3)))
+    
     init(_ row: Int, _ column: Int) {
         self.row = row
         self.column = column
@@ -32,36 +34,38 @@ struct TicTacView: View {
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: 45))
+                        .transition(transition)
                         
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: -45))
+                        .transition(transition)
                 }
             } else if self.state == .nought {
                 Circle()
                     .strokeBorder(.primary, lineWidth: 5)
                     .frame(width: 60, height: 60, alignment: .center)
+                    .transition(transition)
             }
             
             // Ze Button
             if !squareLocked() {
-                Button(action: {
-                    switch tess.player {
-                    case .cross: self.state = .cross
-                    case .nought: self.state = .nought
+                Rectangle()
+                    .frame(width: 75, height: 75)
+                    .foregroundColor(.primary.opacity(0.05))
+                    .cornerRadius(10)
+                    .transition(transition)
+                    .onTapGesture {
+                        switch tess.player {
+                        case .cross: self.state = .cross
+                        case .nought: self.state = .nought
+                        }
+                        
+                        tess.grid[row][column] = self.state
+                        tess.player = tess.player == .cross ? .nought : .cross
+                        
+                        Validator.global.checkGrid()
                     }
-                    
-                    tess.grid[row][column] = self.state
-                    tess.player = tess.player == .cross ? .nought : .cross
-                    
-                    Validator.global.checkGrid()
-                }) {
-                    Rectangle()
-                        .frame(width: 75, height: 75)
-                        .foregroundColor(.primary.opacity(0.05))
-                        .cornerRadius(10)
-                    
-                }
             }
         }
         .frame(width: 75, height: 75)
