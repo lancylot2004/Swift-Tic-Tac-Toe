@@ -21,12 +21,12 @@ class Validator {
         self.grid = grid
     }
     
-    func processSet(_ set: Array<squareState>) {
+    func processSet(_ set: Array<squareState>) -> Bool {
         if set.count == 1 {
             switch set[0] {
-            case .cross: tess.crossScore += 1
-            case .nought: tess.noughtScore += 1
-            case .none: break
+            case .cross: tess.crossScore += 1; return true
+            case .nought: tess.noughtScore += 1; return true
+            case .none: return false
             }
         }
     }
@@ -35,24 +35,24 @@ class Validator {
         // Horizontal Checks
         for row in grid {
             let rowSet = Array(Set(row))
-            self.processSet(rowSet)
+            if self.processSet(rowSet) { return }
         }
         
         // Vertical Checks
         for i in 0..<3 {
             let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
-            self.processSet(columnSet)
+            if self.processSet(columnSet) { return }
         }
         
         // Diagonal Checks
         let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
-        self.processSet(leftToRightSet)
+        if self.processSet(leftToRightSet) { return }
         
         let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
-        self.processSet(rightToLeftSet)
+        if self.processSet(rightToLeftSet) { return }
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
-        // if !allSet.contains(.none) { return .draw }
+        if !allSet.contains(.none) { tess.drawScore += 1 }
         
         return
     }

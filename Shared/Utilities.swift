@@ -31,6 +31,7 @@ class Tesseract: ObservableObject {
     
     @Published var crossScore: Int = 0
     @Published var noughtScore: Int = 0
+    @Published var drawScore: Int = 0
     
     private func resetScore() {
         self.crossScore = 0
