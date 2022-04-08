@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PlayerScoreView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
+    
     private var state: squareState
     
     init(_ state: squareState) { self.state = state }

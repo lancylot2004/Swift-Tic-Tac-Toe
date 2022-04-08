@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ResetView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
+    
     private var text: String
     private var direction: LayoutDirection
     private var image: String
@@ -39,15 +40,13 @@ struct ResetView: View {
                         .cornerRadius(10)
                 }
                 
-                Button {
-                    tess.reset(call)
-                } label: {
-                    Image(systemName: image)
-                        .font(.system(size: 20, weight: .bold, design: .rounded))
-                        .frame(width: 35, height: 35)
-                }
-
-                
+                Image(systemName: image)
+                    .font(.system(size: 20, weight: .bold, design: .rounded))
+                    .accentColor(.primary)
+                    .frame(width: 35, height: 35)
+                    .onTapGesture {
+                        if !tess.locked { tess.reset(call) }
+                    }
             }.environment(\.layoutDirection, self.direction)
         }.frame(width: 150, height: 20)
     }

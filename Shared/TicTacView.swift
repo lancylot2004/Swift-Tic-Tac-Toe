@@ -13,17 +13,12 @@ struct TicTacView: View {
     private var row: Int
     private var column: Int
     @State private var state: squareState = .none
-    
-    private var transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.3)).combined(with: .scale.animation(.easeInOut(duration: 0.3)))
+    @State private var locked: Bool = false
     
     init(_ row: Int, _ column: Int) {
         self.row = row
         self.column = column
         self.state = Tesseract.global.grid[row][column]
-    }
-    
-    private func squareLocked() -> Bool {
-        return self.state == .cross || self.state == .nought
     }
     
     var body: some View {
@@ -34,43 +29,53 @@ struct TicTacView: View {
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: 45))
-                        .transition(transition)
+                        .transition(tess.transition)
                         
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: -45))
-                        .transition(transition)
+                        .transition(tess.transition)
                 }
             } else if self.state == .nought {
                 Circle()
                     .strokeBorder(.primary, lineWidth: 5)
                     .frame(width: 60, height: 60, alignment: .center)
-                    .transition(transition)
+                    .transition(tess.transition)
             }
             
             // Ze Button
-            if !squareLocked() {
+            if !self.locked {
                 Rectangle()
                     .frame(width: 75, height: 75)
                     .foregroundColor(.primary.opacity(0.05))
                     .cornerRadius(10)
-                    .transition(transition)
                     .onTapGesture {
-                        switch tess.player {
-                        case .cross: self.state = .cross
-                        case .nought: self.state = .nought
+                        self.locked.toggle()
+                        withAnimation(Animation.easeInOut(duration: 0.3)) {
+                            switch tess.player {
+                            case .cross: self.state = .cross
+                            case .nought: self.state = .nought
+                            }
+                            
+                            tess.grid[row][column] = self.state
+                            tess.player = tess.player == .cross ? .nought : .cross
+                            
+                            Validator.global.checkGrid()
                         }
-                        
-                        tess.grid[row][column] = self.state
-                        tess.player = tess.player == .cross ? .nought : .cross
-                        
-                        Validator.global.checkGrid()
                     }
             }
         }
         .frame(width: 75, height: 75)
         .onChange(of: tess.grid[row][column]) { _ in
             self.state = tess.grid[row][column]
+            self.locked = self.state == .cross || self.state == .nought
+        }
+        .onChange(of: tess.locked) { newValue in
+            if newValue {
+                self.locked = newValue
+            } else {
+                self.locked = self.state == .cross || self.state == .nought
+            }
         }
     }
 }

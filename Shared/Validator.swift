@@ -5,6 +5,8 @@
 //  Created by lancylot2004 on 07/04/2022.
 //
 
+import Foundation
+
 enum gridState {
     case crossVictory
     case noughtVictory
@@ -21,11 +23,20 @@ class Validator {
         self.grid = grid
     }
     
+    func resetGrid() {
+        tess.locked = true
+        let _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+            self.tess.reset(.grid)
+            self.tess.locked = false
+        }
+        
+    }
+    
     func processSet(_ set: Array<squareState>) -> Bool {
         if set.count == 1 {
             switch set[0] {
-            case .cross: tess.crossScore += 1; return true
-            case .nought: tess.noughtScore += 1; return true
+            case .cross: tess.crossScore += 1; resetGrid(); return true
+            case .nought: tess.noughtScore += 1; resetGrid(); return true
             case .none: return false
             }
         } else {
@@ -37,21 +48,21 @@ class Validator {
         // Horizontal Checks
         for row in grid {
             let rowSet = Array(Set(row))
-            if self.processSet(rowSet) { return }
+            if processSet(rowSet) { return }
         }
         
         // Vertical Checks
         for i in 0..<3 {
             let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
-            if self.processSet(columnSet) { return }
+            if processSet(columnSet) { return }
         }
         
         // Diagonal Checks
         let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
-        if self.processSet(leftToRightSet) { return }
+        if processSet(leftToRightSet) { return }
         
         let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
-        if self.processSet(rightToLeftSet) { return }
+        if processSet(rightToLeftSet) { return }
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
         if !allSet.contains(.none) { tess.drawScore += 1; return }

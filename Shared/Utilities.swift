@@ -33,6 +33,10 @@ class Tesseract: ObservableObject {
     @Published var noughtScore: Int = 0
     @Published var drawScore: Int = 0
     
+    @Published var locked: Bool = false
+    
+    public let transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.1)).combined(with: .scale.animation(.easeInOut(duration: 0.1)))
+    
     private func resetScore() {
         self.crossScore = 0
         self.noughtScore = 0
