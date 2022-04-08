@@ -17,7 +17,6 @@ struct ResetView: View {
     
     @GestureState private var ext: CGFloat = .zero
     private var extTrack: CGFloat = .zero
-    @State private var blink: Color = .clear
     
     init(_ text: String, _ direction: LayoutDirection, _ image: String, _ call: resetOption) {
         self.text = text
@@ -29,21 +28,11 @@ struct ResetView: View {
     private func processTap() {
         if !tess.locked {
             tess.reset(call)
-        } else {
-            withAnimation {
-                blink = .red.opacity(0.3)
-                let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in blink = .clear }
-            }
         }
     }
     
     var body: some View {
         ZStack {
-            Rectangle()
-                .frame(width: 150, height: 35)
-                .foregroundColor(blink)
-                .cornerRadius(10)
-            
             Rectangle()
                 .frame(width: 150, height: 35)
                 .foregroundColor(.primary.opacity(0.05))

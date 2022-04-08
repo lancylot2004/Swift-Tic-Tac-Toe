@@ -11,11 +11,23 @@ struct PlayerScoreView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
     
     private var state: squareState
+    @State private var blink: Color = .clear
     
     init(_ state: squareState) { self.state = state }
     
     var body: some View {
         ZStack {
+            Rectangle()
+                .frame(width: 150, height: 70)
+                .foregroundColor(blink)
+                .cornerRadius(10)
+                .onChange(of: self.state == .cross ? tess.crossScore : tess.noughtScore) { _ in
+                    withAnimation {
+                        blink = .green.opacity(0.5)
+                        let _ = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in withAnimation { blink = .clear } }
+                    }
+                }
+            
             Rectangle()
                 .frame(width: 150, height: 70)
                 .foregroundColor(.primary.opacity(0.05))
