@@ -15,6 +15,8 @@ struct TicTacView: View {
     @State private var state: squareState = .none
     @State private var locked: Bool = false
     
+    let transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.1)).combined(with: .scale.animation(.easeInOut(duration: 0.1)))
+    
     init(_ row: Int, _ column: Int) {
         self.row = row
         self.column = column
@@ -29,18 +31,18 @@ struct TicTacView: View {
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: 45))
-                        .transition(tess.transition)
+                        .transition(transition)
                         
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: -45))
-                        .transition(tess.transition)
+                        .transition(transition)
                 }
             } else if self.state == .nought {
                 Circle()
                     .strokeBorder(.primary, lineWidth: 5)
                     .frame(width: 60, height: 60, alignment: .center)
-                    .transition(tess.transition)
+                    .transition(transition)
             }
             
             // Ze Button
@@ -49,6 +51,7 @@ struct TicTacView: View {
                     .frame(width: 75, height: 75)
                     .foregroundColor(.primary.opacity(0.05))
                     .cornerRadius(10)
+                    .transition(.opacity.animation(.easeIn(duration: 0.1)).combined(with: .scale.animation(.easeIn(duration: 0.1))))
                     .onTapGesture {
                         self.locked.toggle()
                         withAnimation(Animation.easeInOut(duration: 0.3)) {
