@@ -37,6 +37,7 @@ class Tesseract: ObservableObject {
     @Published var locked: Bool = false
     
     public let generator = UIImpactFeedbackGenerator(style: .heavy)
+    public var start: Date = Date()
     
     public func haptic() {
         generator.impactOccurred()
@@ -50,6 +51,8 @@ class Tesseract: ObservableObject {
     private func resetGrid() {
         self.grid = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
         self.player = .cross
+
+        start = Date()
     }
     
     public func reset(_ option: resetOption) {

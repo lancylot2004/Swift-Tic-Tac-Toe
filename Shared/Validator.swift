@@ -25,7 +25,11 @@ class Validator {
     
     func resetGrid() {
         tess.locked = true
-        let _ = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false) { _ in
+        var interval: Double = abs(Double(Date().distance(to: tess.start)))
+        interval = interval > 60 ? 60 : interval
+        let timeAdd: Double = 2.25 * (interval / 60)
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 1.75 + timeAdd, repeats: false) { _ in
             self.tess.reset(.grid)
             self.tess.locked = false
         }
