@@ -35,8 +35,6 @@ class Tesseract: ObservableObject {
     
     @Published var locked: Bool = false
     
-    public let transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.1)).combined(with: .scale.animation(.easeInOut(duration: 0.1)))
-    
     private func resetScore() {
         self.crossScore = 0
         self.noughtScore = 0
@@ -52,8 +50,6 @@ class Tesseract: ObservableObject {
         case .grid: self.resetGrid()
         case .score: self.resetScore()
         }
-        
-        print(self.grid)
     }
     
     static let global = Tesseract()
