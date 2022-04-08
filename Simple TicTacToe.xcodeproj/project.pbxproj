@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F59506322800C680005EF5CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59506312800C680005EF5CA /* UIKit.framework */; };
 		F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
 		F5A3D5A627FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
 		F5A3D5A727FB22BB00DE2819 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59627FB22B600DE2819 /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F59506312800C680005EF5CA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
 		F5A3D59627FB22B600DE2819 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F5A3D59727FB22BB00DE2819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59506322800C680005EF5CA /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +61,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F59506302800C680005EF5CA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F59506312800C680005EF5CA /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F5A3D58F27FB22B600DE2819 = {
 			isa = PBXGroup;
 			children = (
@@ -65,6 +76,7 @@
 				F5A3D59427FB22B600DE2819 /* Shared */,
 				F5A3D5A327FB22BB00DE2819 /* macOS */,
 				F5A3D59D27FB22BB00DE2819 /* Products */,
+				F59506302800C680005EF5CA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,6 +356,10 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KTK5R8QJ6S;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -365,7 +381,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -379,6 +395,10 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KTK5R8QJ6S;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -400,7 +420,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
