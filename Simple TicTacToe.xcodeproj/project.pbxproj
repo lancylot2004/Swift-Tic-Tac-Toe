@@ -29,7 +29,7 @@
 		F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
 		F5A3D59627FB22B600DE2819 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F5A3D59727FB22BB00DE2819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F5A3D59C27FB22BB00DE2819 /* Simple TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple TicTacToe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple TicTacToe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A3D5A427FB22BB00DE2819 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		F5A3D5B627FB295600DE2819 /* TicTacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacView.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 		F5A3D59D27FB22BB00DE2819 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F5A3D59C27FB22BB00DE2819 /* Simple TicTacToe.app */,
+				F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */,
 				F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */,
 			);
 			name = Products;
@@ -117,7 +117,7 @@
 			);
 			name = "Simple TicTacToe (iOS)";
 			productName = "Simple TicTacToe (iOS)";
-			productReference = F5A3D59C27FB22BB00DE2819 /* Simple TicTacToe.app */;
+			productReference = F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */;
 			productType = "com.apple.product-type.application";
 		};
 		F5A3D5A127FB22BB00DE2819 /* Simple TicTacToe (macOS) */ = {
@@ -350,7 +350,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -359,7 +359,7 @@
 				);
 				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
-				PRODUCT_NAME = "Simple TicTacToe";
+				PRODUCT_NAME = TicTacToe;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -385,7 +385,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -394,7 +394,7 @@
 				);
 				MARKETING_VERSION = 0.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
-				PRODUCT_NAME = "Simple TicTacToe";
+				PRODUCT_NAME = TicTacToe;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -425,7 +425,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.lancylot.Simple-TicTacToe";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
 				PRODUCT_NAME = "Simple TicTacToe";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -453,7 +453,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "dev.lancylot.Simple-TicTacToe";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
 				PRODUCT_NAME = "Simple TicTacToe";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
