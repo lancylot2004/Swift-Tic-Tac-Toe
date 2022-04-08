@@ -25,6 +25,7 @@ struct PlayerScoreView: View {
                 ZStack {
                     Text(String(self.state == .cross ? tess.crossScore : tess.noughtScore))
                         .font(.system(size: 65, weight: .bold, design: .rounded))
+                        .minimumScaleFactor(0.1)
                     
                     Rectangle()
                         .frame(width: 80, height: 70)
