@@ -15,6 +15,10 @@ struct ResetView: View {
     private var image: String
     private var call: resetOption
     
+    @GestureState private var ext: CGFloat = .zero
+    private var extTrack: CGFloat = .zero
+    @State private var blink: Color = .clear
+    
     init(_ text: String, _ direction: LayoutDirection, _ image: String, _ call: resetOption) {
         self.text = text
         self.direction = direction
@@ -22,8 +26,24 @@ struct ResetView: View {
         self.call = call
     }
     
+    private func processTap() {
+        if !tess.locked {
+            tess.reset(call)
+        } else {
+            withAnimation {
+                blink = .red.opacity(0.3)
+                let _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in blink = .clear }
+            }
+        }
+    }
+    
     var body: some View {
         ZStack {
+            Rectangle()
+                .frame(width: 150, height: 35)
+                .foregroundColor(blink)
+                .cornerRadius(10)
+            
             Rectangle()
                 .frame(width: 150, height: 35)
                 .foregroundColor(.primary.opacity(0.05))
@@ -31,24 +51,44 @@ struct ResetView: View {
             
             HStack(spacing: 0) {
                 ZStack {
-                    Text(String(self.text))
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                    
                     Rectangle()
-                        .frame(width: 115, height:35)
-                        .foregroundColor(.primary.opacity(0.1))
+                        .frame(width: 115 + ext, height: 35)
+                        .foregroundColor(.primary.opacity(0.1 + (ext / 500)))
                         .cornerRadius(10)
+                        .gesture(DragGesture(minimumDistance: 0)
+                        .updating(self.$ext) { value, state, _ in
+                            let modifier: CGFloat = direction == .leftToRight ? 1 : -1
+                            let tempWidth: CGFloat = value.translation.width * modifier
+                            if tempWidth > 70 { processTap() }
+                            
+                            switch tempWidth {
+                                case ..<0: state = 0
+                                case 0...35: state = tempWidth * modifier
+                                default: state = 35 * modifier
+                            }
+                            
+                            if direction == .rightToLeft { state = -state }
+                        })
+                        .animation(.spring(response: 0.2, dampingFraction: 0.4, blendDuration: 1))
                 }
+                
+                Spacer().frame(minWidth: 0)
+            }.environment(\.layoutDirection, self.direction)
+            
+            // Text + Symbol
+            HStack(spacing: 0) {
+                Text(String(self.text))
+                    .font(.system(size: 15, weight: .bold, design: .rounded))
+                    .frame(width: 115, height: 35)
                 
                 Image(systemName: image)
                     .font(.system(size: 20, weight: .bold, design: .rounded))
                     .accentColor(.primary)
                     .frame(width: 35, height: 35)
-                    .onTapGesture {
-                        if !tess.locked { tess.reset(call) }
-                    }
+                    .onTapGesture { processTap() }
             }.environment(\.layoutDirection, self.direction)
-        }.frame(width: 150, height: 20)
+        }
+        .frame(width: 150, height: 20)
     }
 }
 

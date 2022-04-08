@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 enum squareState {
     case none
@@ -34,6 +35,12 @@ class Tesseract: ObservableObject {
     @Published var drawScore: Int = 0
     
     @Published var locked: Bool = false
+    
+    public let generator = UIImpactFeedbackGenerator(style: .heavy)
+    
+    public func haptic() {
+        generator.impactOccurred()
+    }
     
     private func resetScore() {
         self.crossScore = 0
