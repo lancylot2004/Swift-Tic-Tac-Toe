@@ -12,9 +12,12 @@ struct PlayerScoreView: View {
     
     private var state: state
     @State private var blinkColour: Color = .clear
-    @State private var indicatorColour: Color = .clear
+    @State private var indicatorColour: Color
     
-    init(_ state: state) { self.state = state }
+    init(_ state: state) {
+        self.state = state
+        self.indicatorColour = state == Tesseract.global.player ? .cyan.opacity(0.7) : .clear
+    }
     
     var body: some View {
         ZStack {
@@ -36,7 +39,7 @@ struct PlayerScoreView: View {
                 .onChange(of: tess.player) { newValue in
                     withAnimation {
                         switch tess.player {
-                            case .cross, .nought: indicatorColour = self.state == tess.player ? .cyan : .clear
+                            case .cross, .nought: indicatorColour = self.state == tess.player ? .cyan.opacity(0.7) : .clear
                             case .none: indicatorColour = .clear
                         }
                     }
