@@ -26,6 +26,7 @@ struct ResetView: View {
     }
     
     private func processTap() {
+        tess.haptic()
         if !tess.locked {
             tess.reset(call)
         }
