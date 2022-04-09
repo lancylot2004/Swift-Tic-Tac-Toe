@@ -49,7 +49,7 @@ struct ResetView: View {
                         .updating(self.$ext) { value, state, _ in
                             let modifier: CGFloat = direction == .leftToRight ? 1 : -1
                             let tempWidth: CGFloat = value.translation.width * modifier
-                            if tempWidth > 70 { processTap() }
+                            
                             
                             switch tempWidth {
                                 case ..<0: state = 0
@@ -58,7 +58,13 @@ struct ResetView: View {
                             }
                             
                             if direction == .rightToLeft { state = -state }
+                        }
+                        .onEnded({ value in
+                            let modifier: CGFloat = direction == .leftToRight ? 1 : -1
+                            let tempWidth: CGFloat = value.translation.width * modifier
+                            if tempWidth > 70 { processTap() }
                         })
+                        )
                         .animation(.spring(response: 0.2, dampingFraction: 0.4, blendDuration: 1))
                 }
                 
