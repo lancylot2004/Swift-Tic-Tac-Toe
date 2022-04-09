@@ -21,9 +21,42 @@ enum gridState {
     case ongoing
 }
 
+enum AIState {
+    case noob
+    case human
+    case ai
+}
+
 enum resetOption {
     case grid
     case score
+}
+
+// Corner Radius Extensions
+struct CornerRadiusShape: Shape {
+    var radius = CGFloat.infinity
+    var corners = UIRectCorner.allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+struct CornerRadiusStyle: ViewModifier {
+    var radius: CGFloat
+    var corners: UIRectCorner
+
+    func body(content: Content) -> some View {
+        content
+            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
+    }
 }
 
 class Tesseract: ObservableObject {
@@ -37,9 +70,22 @@ class Tesseract: ObservableObject {
     
     @Published var locked: Bool = false
     @Published var resetCountdown: Double = 0
+    @Published var resetCountdownFull: Double = 3.5 {
+        didSet {
+            resetCountdown = resetCountdownFull
+        }
+    }
+    
+    @Published var AIPlayer: state = .nought
+    @Published var AIDifficulty: AIState = .noob
+    
+    /// Constants
+    public let constTransition: AnyTransition =
+        .opacity.animation(.easeInOut(duration: 0.1))
+        .combined(with: .scale.animation(.easeInOut(duration: 0.1)))
     
     /// Haptics
-    public let generator = UIImpactFeedbackGenerator(style: .heavy)
+    private let generator = UIImpactFeedbackGenerator(style: .heavy)
     
     public func haptic() {
         generator.impactOccurred()
@@ -56,10 +102,10 @@ class Tesseract: ObservableObject {
         player = .cross
     }
     
-    func animatedResetGrid() {
+    public func animatedResetGrid() {
         player = .none
         locked = true
-        resetCountdown = 3.5
+        resetCountdownFull = 3.5
         
         let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
             resetCountdown -= 0.01
@@ -86,7 +132,7 @@ class Tesseract: ObservableObject {
     
     /// --Validation Functions--
     /// Takes an array of `squareState`s and determines if it constitutes a win for either player.
-    func processSet(_ set: Array<state>) -> Bool {
+    private func processSet(_ set: Array<state>) -> Bool {
         if set.count == 1 {
             switch set[0] {
             case .cross: crossScore += 1; animatedResetGrid(); return true
@@ -99,7 +145,7 @@ class Tesseract: ObservableObject {
     }
     
     /// Performs a check for winners for the current grid.
-    func checkGrid() {
+    public func checkGrid() {
         // Horizontal Checks
         for row in grid {
             let rowSet = Array(Set(row))
@@ -123,6 +169,50 @@ class Tesseract: ObservableObject {
         if !allSet.contains(.none) { drawScore += 1; animatedResetGrid(); return }
         
         return
+    }
+    
+    /// Toggles `player`
+    public func togglePlayer() { player = player == .cross ? .nought : .cross }
+    
+    /// (*not*) ARTIFICIAL INTELLIGENCE
+    func AIProcess() {
+        if AIPlayer == .none { return }
+        if player != AIPlayer { return }
+        
+        locked = true
+        resetCountdownFull = 1
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
+            resetCountdown -= 0.01
+            if resetCountdown <= 0 {
+                timer.invalidate()
+                resetCountdown = 0
+                return
+            }
+        }
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [self] _ in
+            switch AIDifficulty {
+                case .noob: noobTurn()
+                case .human: return
+                case .ai: return
+            }
+            
+            checkGrid()
+            locked = false
+        }
+    }
+    
+    private func noobTurn() {
+        while true {
+            let i: Int = Int.random(in: 0...2)
+            let j: Int = Int.random(in: 0...2)
+            if grid[i][j] == .none {
+                grid[i][j] = player
+                togglePlayer()
+                return
+            }
+        }
     }
     
     /// Singleton

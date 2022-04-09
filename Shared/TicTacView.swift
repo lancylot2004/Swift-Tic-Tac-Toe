@@ -15,8 +15,6 @@ struct TicTacView: View {
     @State private var state: state = .none
     @State private var locked: Bool = false
     
-    let transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.1)).combined(with: .scale.animation(.easeInOut(duration: 0.1)))
-    
     init(_ row: Int, _ column: Int) {
         self.row = row
         self.column = column
@@ -27,22 +25,22 @@ struct TicTacView: View {
         ZStack {
             // Nought or Cross
             if self.state == .cross {
-                ZStack{
+                ZStack {
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: 45))
-                        .transition(transition)
+                        .transition(tess.constTransition)
                         
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: -45))
-                        .transition(transition)
+                        .transition(tess.constTransition)
                 }
             } else if self.state == .nought {
                 Circle()
                     .strokeBorder(.primary, lineWidth: 5)
                     .frame(width: 60, height: 60, alignment: .center)
-                    .transition(transition)
+                    .transition(tess.constTransition)
             }
             
             // Ze Button
@@ -62,9 +60,9 @@ struct TicTacView: View {
                             }
                             
                             tess.grid[row][column] = self.state
-                            tess.player = tess.player == .cross ? .nought : .cross
-                            
+                            tess.togglePlayer()
                             tess.checkGrid()
+                            tess.AIProcess()
                         }
                     }
             }

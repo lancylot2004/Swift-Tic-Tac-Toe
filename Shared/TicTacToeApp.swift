@@ -11,7 +11,7 @@ import SwiftUI
 struct TicTacToeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
