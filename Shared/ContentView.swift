@@ -15,7 +15,7 @@ struct ContentView: View {
     @State var locked: Bool = false
     @State var indicatorWidth: CGFloat = 310
     @State var indicatorColour: Color = .clear
-    
+
     var body: some View {
         ZStack{
             VStack(spacing: 0) {
@@ -43,6 +43,27 @@ struct ContentView: View {
                         .cornerRadius(10)
                     
                     ZStack {
+                        GeometryReader { geometry in
+                            if tess.winningPair != nil && tess.winning {
+                                Path { highlight in
+                                    let rect = geometry.frame(in: CoordinateSpace.named("grid"))
+                                    highlight.move(to: CGPoint(
+                                        x: rect.minX + 37.5 + CGFloat(90 * tess.winningPair![1]),
+                                        y: rect.minY + 37.5 + CGFloat(90 * tess.winningPair![0]))
+                                    )
+
+                                    highlight.addLine(to: CGPoint(
+                                        x: rect.minX + 37.5 + CGFloat(90 * tess.winningPair![3]),
+                                        y: rect.minY + 37.5 + CGFloat(90 * tess.winningPair![2]))
+                                    )
+                                }
+                                .stroke(style: StrokeStyle(lineWidth: 75, lineCap: .round))
+                                .foregroundColor(.green.opacity(0.7))
+                            }
+                        }
+                        .coordinateSpace(name: "grid")
+                        .frame(width: standardSize - 10, height: standardSize - 10)
+                        
                         VStack {
                             Spacer()
                             Capsule()
@@ -72,7 +93,7 @@ struct ContentView: View {
                                 }.frame(width: standardSize - 10)
                             }
                         }.frame(width: standardSize - 10, height: standardSize - 10)
-                    }
+                    }.frame(width: standardSize, height: standardSize)
                 }
                 
                 Spacer().frame(height: 5)
@@ -220,7 +241,6 @@ struct ContentView: View {
                     
                     Spacer().frame(width: 5)
                 }.frame(width: 310, height: 40)
-                
             }
             
             // Locking Cover

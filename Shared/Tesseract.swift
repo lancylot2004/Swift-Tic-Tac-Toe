@@ -67,10 +67,12 @@ class Tesseract: ObservableObject {
     @Published var crossScore: Int = 0
     @Published var noughtScore: Int = 0
     @Published var drawScore: Int = 0
+    @Published var winningPair: Array<Int>? = nil
+    @Published var winning: Bool = false
     
     @Published var locked: Bool = false
     @Published var resetCountdown: Double = 0
-    @Published var resetCountdownFull: Double = 3.5 {
+    @Published var resetCountdownFull: Double = 0 {
         didSet {
             resetCountdown = resetCountdownFull
         }
@@ -105,6 +107,7 @@ class Tesseract: ObservableObject {
     public func animatedResetGrid() {
         player = .none
         locked = true
+        winning = true
         resetCountdownFull = 3.5
         
         let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
@@ -118,8 +121,10 @@ class Tesseract: ObservableObject {
         
         let _ = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { [self] _ in
             resetGrid()
+            winningPair = nil
             player = .cross
             locked = false
+            winning = false
         }
     }
     
@@ -147,22 +152,26 @@ class Tesseract: ObservableObject {
     /// Performs a check for winners for the current grid.
     public func checkGrid() {
         // Horizontal Checks
-        for row in grid {
-            let rowSet = Array(Set(row))
+        for i in 0..<3 {
+            let rowSet = Array(Set(grid[i]))
+            winningPair = [i, 0, i, 2]
             if processSet(rowSet) { return }
         }
         
         // Vertical Checks
         for i in 0..<3 {
             let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
+            winningPair = [0, i, 2, i]
             if processSet(columnSet) { return }
         }
         
         // Diagonal Checks
         let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
+        winningPair = [0, 0, 2, 2]
         if processSet(leftToRightSet) { return }
         
         let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
+        winningPair = [2, 0, 0, 2]
         if processSet(rightToLeftSet) { return }
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
@@ -213,6 +222,14 @@ class Tesseract: ObservableObject {
                 return
             }
         }
+    }
+    
+    private func humanTurn() {
+        noobTurn()
+    }
+    
+    private func AITurn() {
+        noobTurn()
     }
     
     /// Singleton
