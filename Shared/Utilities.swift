@@ -19,15 +19,21 @@ enum playerState {
     case nought
 }
 
+enum gridState {
+    case crossVictory
+    case noughtVictory
+    case draw
+    case ongoing
+}
+
 enum resetOption {
     case grid
     case score
 }
 
 class Tesseract: ObservableObject {
-    @Published var grid: Array<Array<squareState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]] {
-        didSet { Validator.global.setGrid(self.grid) }
-    }
+    /// Variables
+    @Published var grid: Array<Array<squareState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
     @Published var player: playerState = .cross
     
     @Published var crossScore: Int = 0
@@ -35,33 +41,101 @@ class Tesseract: ObservableObject {
     @Published var drawScore: Int = 0
     
     @Published var locked: Bool = false
+    @Published var resetCountdown: Double = 0
     
+    /// Timer for various animations during reset
+    public let resetTimer: Timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
+        if Tesseract.global.resetCountdown <= 0 {
+            timer.invalidate()
+            Tesseract.global.resetCountdown = 0
+            return
+        }
+        
+        Tesseract.global.resetCountdown -= 0.01
+    }
+    
+    public func resetTimerRun() {
+        RunLoop.main.add(resetTimer, forMode: .common)
+    }
+        
+    /// Haptics
     public let generator = UIImpactFeedbackGenerator(style: .heavy)
-    public var start: Date = Date()
     
     public func haptic() {
         generator.impactOccurred()
     }
     
+    /// Resets
     private func resetScore() {
-        self.crossScore = 0
-        self.noughtScore = 0
+        crossScore = 0
+        noughtScore = 0
     }
     
     private func resetGrid() {
-        self.grid = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
-        self.player = .cross
-
-        start = Date()
+        grid = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
+        player = .cross
+    }
+    
+    func animatedResetGrid() {
+        locked = true
+        resetCountdown = 3.5
+        resetTimerRun()
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { [self] _ in
+            resetGrid()
+            locked = false
+        }
     }
     
     public func reset(_ option: resetOption) {
         switch option {
-        case .grid: self.resetGrid()
-        case .score: self.resetScore()
+        case .grid: resetGrid()
+        case .score: resetScore()
         }
     }
     
+    /// --Validation Functions--
+    /// Takes an array of `squareState`s and determines if it constitutes a win for either player.
+    func processSet(_ set: Array<squareState>) -> Bool {
+        if set.count == 1 {
+            switch set[0] {
+            case .cross: crossScore += 1; animatedResetGrid(); return true
+            case .nought: noughtScore += 1; animatedResetGrid(); return true
+            case .none: return false
+            }
+        } else {
+            return false
+        }
+    }
+    
+    /// Performs a check for winners for the current grid.
+    func checkGrid() {
+        // Horizontal Checks
+        for row in grid {
+            let rowSet = Array(Set(row))
+            if processSet(rowSet) { return }
+        }
+        
+        // Vertical Checks
+        for i in 0..<3 {
+            let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
+            if processSet(columnSet) { return }
+        }
+        
+        // Diagonal Checks
+        let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
+        if processSet(leftToRightSet) { return }
+        
+        let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
+        if processSet(rightToLeftSet) { return }
+        
+        let allSet = Array(grid[0] + grid[1] + grid[2])
+        if !allSet.contains(.none) { drawScore += 1; animatedResetGrid(); return }
+        
+        return
+    }
+    
+    /// Singleton
     static let global = Tesseract()
     private init() {}
 }

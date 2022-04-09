@@ -18,8 +18,6 @@
 		F5A3D5B827FB295600DE2819 /* TicTacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5B627FB295600DE2819 /* TicTacView.swift */; };
 		F5A3D5BD27FB449700DE2819 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5BC27FB449700DE2819 /* Utilities.swift */; };
 		F5A3D5BE27FB449700DE2819 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5BC27FB449700DE2819 /* Utilities.swift */; };
-		F5B3678427FF178E00DC7764 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B3678327FF178D00DC7764 /* Validator.swift */; };
-		F5B3678527FF178E00DC7764 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B3678327FF178D00DC7764 /* Validator.swift */; };
 		F5E8226927FEF94D00337B88 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */; };
 		F5E8226A27FEF94D00337B88 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */; };
 		F5E8226C27FF002800337B88 /* ResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226B27FF002800337B88 /* ResetView.swift */; };
@@ -36,7 +34,6 @@
 		F5A3D5A427FB22BB00DE2819 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		F5A3D5B627FB295600DE2819 /* TicTacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacView.swift; sourceTree = "<group>"; };
 		F5A3D5BC27FB449700DE2819 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		F5B3678327FF178D00DC7764 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		F5B3678627FF4CA800DC7764 /* Simple TicTacToe (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Simple TicTacToe (iOS).entitlements"; sourceTree = "<group>"; };
 		F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreView.swift; sourceTree = "<group>"; };
 		F5E8226B27FF002800337B88 /* ResetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetView.swift; sourceTree = "<group>"; };
@@ -88,7 +85,6 @@
 				F5E8226B27FF002800337B88 /* ResetView.swift */,
 				F5A3D5B627FB295600DE2819 /* TicTacView.swift */,
 				F5A3D5BC27FB449700DE2819 /* Utilities.swift */,
-				F5B3678327FF178D00DC7764 /* Validator.swift */,
 				F5A3D59727FB22BB00DE2819 /* Assets.xcassets */,
 				F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */,
 			);
@@ -214,7 +210,6 @@
 				F5E8226927FEF94D00337B88 /* PlayerScoreView.swift in Sources */,
 				F5A3D5B727FB295600DE2819 /* TicTacView.swift in Sources */,
 				F5A3D5A727FB22BB00DE2819 /* ContentView.swift in Sources */,
-				F5B3678427FF178E00DC7764 /* Validator.swift in Sources */,
 				F5A3D5BD27FB449700DE2819 /* Utilities.swift in Sources */,
 				F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
 			);
@@ -228,7 +223,6 @@
 				F5E8226A27FEF94D00337B88 /* PlayerScoreView.swift in Sources */,
 				F5A3D5B827FB295600DE2819 /* TicTacView.swift in Sources */,
 				F5A3D5A827FB22BB00DE2819 /* ContentView.swift in Sources */,
-				F5B3678527FF178E00DC7764 /* Validator.swift in Sources */,
 				F5A3D5BE27FB449700DE2819 /* Utilities.swift in Sources */,
 				F5A3D5A627FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
 			);
