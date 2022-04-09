@@ -12,7 +12,7 @@ struct TicTacView: View {
     
     private var row: Int
     private var column: Int
-    @State private var state: squareState = .none
+    @State private var state: state = .none
     @State private var locked: Bool = false
     
     let transition: AnyTransition = .opacity.animation(.easeInOut(duration: 0.1)).combined(with: .scale.animation(.easeInOut(duration: 0.1)))
@@ -58,6 +58,7 @@ struct TicTacView: View {
                             switch tess.player {
                             case .cross: self.state = .cross
                             case .nought: self.state = .nought
+                            case .none: break
                             }
                             
                             tess.grid[row][column] = self.state

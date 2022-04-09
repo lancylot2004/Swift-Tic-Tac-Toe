@@ -10,21 +10,35 @@ import SwiftUI
 struct PlayerScoreView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
     
-    private var state: squareState
-    @State private var blink: Color = .clear
+    private var state: state
+    @State private var blinkColour: Color = .clear
+    @State private var indicatorColour: Color = .clear
     
-    init(_ state: squareState) { self.state = state }
+    init(_ state: state) { self.state = state }
     
     var body: some View {
         ZStack {
             Rectangle()
                 .frame(width: 150, height: 70)
-                .foregroundColor(blink)
+                .foregroundColor(blinkColour)
                 .cornerRadius(10)
                 .onChange(of: self.state == .cross ? tess.crossScore : tess.noughtScore) { _ in
                     withAnimation {
-                        blink = .green.opacity(0.5)
-                        let _ = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in withAnimation { blink = .clear } }
+                        blinkColour = .green.opacity(0.5)
+                        let _ = Timer.scheduledTimer(withTimeInterval: 0.4, repeats: false) { _ in withAnimation { blinkColour = .clear } }
+                    }
+                }
+            
+            Rectangle()
+                .frame(width: 150, height: 70)
+                .foregroundColor(indicatorColour)
+                .cornerRadius(10)
+                .onChange(of: tess.player) { newValue in
+                    withAnimation {
+                        switch tess.player {
+                            case .cross, .nought: indicatorColour = self.state == tess.player ? .cyan : .clear
+                            case .none: indicatorColour = .clear
+                        }
                     }
                 }
             

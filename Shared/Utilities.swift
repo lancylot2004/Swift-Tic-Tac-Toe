@@ -8,13 +8,8 @@
 import SwiftUI
 import UIKit
 
-enum squareState {
+enum state {
     case none
-    case cross
-    case nought
-}
-
-enum playerState {
     case cross
     case nought
 }
@@ -33,8 +28,8 @@ enum resetOption {
 
 class Tesseract: ObservableObject {
     /// Variables
-    @Published var grid: Array<Array<squareState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
-    @Published var player: playerState = .cross
+    @Published var grid: Array<Array<state>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
+    @Published var player: state = .cross
     
     @Published var crossScore: Int = 0
     @Published var noughtScore: Int = 0
@@ -62,6 +57,7 @@ class Tesseract: ObservableObject {
     }
     
     func animatedResetGrid() {
+        player = .none
         locked = true
         resetCountdown = 3.5
         
@@ -76,6 +72,7 @@ class Tesseract: ObservableObject {
         
         let _ = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { [self] _ in
             resetGrid()
+            player = .cross
             locked = false
         }
     }
@@ -89,7 +86,7 @@ class Tesseract: ObservableObject {
     
     /// --Validation Functions--
     /// Takes an array of `squareState`s and determines if it constitutes a win for either player.
-    func processSet(_ set: Array<squareState>) -> Bool {
+    func processSet(_ set: Array<state>) -> Bool {
         if set.count == 1 {
             switch set[0] {
             case .cross: crossScore += 1; animatedResetGrid(); return true
