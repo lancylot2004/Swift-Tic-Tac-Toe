@@ -13,10 +13,28 @@ struct ContentView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
     
     @State var locked: Bool = false
+    @State var indicatorWidth: CGFloat = 310
+    @State var indicatorColour: Color = .clear
     
     var body: some View {
         ZStack{
             VStack(spacing: 0) {
+                // Reset Indicator
+                HStack {
+                    Rectangle()
+                        .frame(width: indicatorWidth, height: 10)
+                        .foregroundColor(indicatorColour)
+                        .cornerRadius(10)
+                        .onChange(of: tess.resetCountdown) { newValue in
+                            indicatorWidth = 310 * (newValue == 0 ? 1 : (tess.resetCountdown / 3.5))
+                            indicatorColour = tess.resetCountdown == 0 ? .clear : .green.opacity(0.9)
+                        }
+                    
+                    Spacer().frame(minWidth: 0)
+                }.frame(width: 310, alignment: .center)
+                
+                Spacer().frame(height: 10)
+                
                 // Game Board
                 ZStack {
                     Rectangle()

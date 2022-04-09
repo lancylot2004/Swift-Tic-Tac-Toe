@@ -43,21 +43,6 @@ class Tesseract: ObservableObject {
     @Published var locked: Bool = false
     @Published var resetCountdown: Double = 0
     
-    /// Timer for various animations during reset
-    public let resetTimer: Timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { timer in
-        if Tesseract.global.resetCountdown <= 0 {
-            timer.invalidate()
-            Tesseract.global.resetCountdown = 0
-            return
-        }
-        
-        Tesseract.global.resetCountdown -= 0.01
-    }
-    
-    public func resetTimerRun() {
-        RunLoop.main.add(resetTimer, forMode: .common)
-    }
-        
     /// Haptics
     public let generator = UIImpactFeedbackGenerator(style: .heavy)
     
@@ -79,7 +64,15 @@ class Tesseract: ObservableObject {
     func animatedResetGrid() {
         locked = true
         resetCountdown = 3.5
-        resetTimerRun()
+        
+        let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
+            resetCountdown -= 0.01
+            if resetCountdown <= 0 {
+                timer.invalidate()
+                resetCountdown = 0
+                return
+            }
+        }
         
         let _ = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { [self] _ in
             resetGrid()
