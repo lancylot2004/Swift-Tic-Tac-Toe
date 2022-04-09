@@ -7,13 +7,11 @@
 
 import SwiftUI
 
-let standardSize: CGFloat = 265
-
 struct ContentView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
     
     @State var locked: Bool = false
-    @State var indicatorWidth: CGFloat = 310
+    @State var indicatorWidth: CGFloat = const.gameWidth
     @State var indicatorColour: Color = .clear
 
     var body: some View {
@@ -22,103 +20,106 @@ struct ContentView: View {
                 // Reset Indicator
                 HStack {
                     Rectangle()
-                        .frame(width: indicatorWidth, height: 10)
+                        .frame(width: indicatorWidth, height: const.indicatorHeight)
                         .foregroundColor(indicatorColour)
-                        .cornerRadius(10)
+                        .cornerRadius(const.cornerRadius)
                         .onChange(of: tess.resetCountdown) { newValue in
-                            indicatorWidth = 310 * (newValue == 0 ? 1 : (tess.resetCountdown / tess.resetCountdownFull))
-                            indicatorColour = tess.resetCountdown == 0 ? .clear : .green.opacity(0.9)
+                            indicatorWidth = const.gameWidth * (newValue == 0 ? 1 : (tess.resetCountdown / tess.resetCountdownFull))
+                            indicatorColour = tess.resetCountdown == 0 ? .clear : const.indicatorColour
                         }
                     
                     Spacer().frame(minWidth: 0)
-                }.frame(width: 310, alignment: .center)
+                }.frame(width: const.gameWidth)
                 
-                Spacer().frame(height: 10)
+                Spacer().frame(height: const.gameSpacing)
                 
                 // Game Board
                 ZStack {
                     Rectangle()
-                        .frame(width: 310, height: 310)
-                        .foregroundColor(.primary.opacity(0.05))
-                        .cornerRadius(10)
+                        .frame(width: const.gameWidth, height: const.gameWidth)
+                        .foregroundColor(const.backgroundColour)
+                        .cornerRadius(const.cornerRadius)
                     
                     ZStack {
                         GeometryReader { geometry in
                             if tess.winningPair != nil && tess.winning {
                                 Path { highlight in
                                     let rect = geometry.frame(in: CoordinateSpace.named("grid"))
+                                    // a + bx
+                                    let a: CGFloat = (const.squareSize / 2)
+                                    let b: CGFloat = const.squareSize + (const.gridSpacing * 3)
                                     highlight.move(to: CGPoint(
-                                        x: rect.minX + 37.5 + CGFloat(90 * tess.winningPair![1]),
-                                        y: rect.minY + 37.5 + CGFloat(90 * tess.winningPair![0]))
+                                        x: rect.minX + a + b * CGFloat(tess.winningPair![1]),
+                                        y: rect.minY + a + b * CGFloat(tess.winningPair![0]))
                                     )
 
                                     highlight.addLine(to: CGPoint(
-                                        x: rect.minX + 37.5 + CGFloat(90 * tess.winningPair![3]),
-                                        y: rect.minY + 37.5 + CGFloat(90 * tess.winningPair![2]))
+                                        x: rect.minX + a + b * CGFloat(tess.winningPair![3]),
+                                        y: rect.minY + a + b * CGFloat(tess.winningPair![2]))
                                     )
                                 }
-                                .stroke(style: StrokeStyle(lineWidth: 75, lineCap: .round))
-                                .foregroundColor(.green.opacity(0.7))
+                                .stroke(style: StrokeStyle(lineWidth: const.squareSize, lineCap: .round))
+                                .foregroundColor(const.winHighlightColour)
                             }
                         }
                         .coordinateSpace(name: "grid")
-                        .frame(width: standardSize - 10, height: standardSize - 10)
+                        .frame(width: const.gridSize - const.gameSpacing, height: const.gridSize - const.gameSpacing)
                         
                         VStack {
                             Spacer()
                             Capsule()
-                                .frame(width: standardSize, height: 5, alignment: .center)
+                                .frame(width: const.gridSize, height: const.gridSpacing)
                             Spacer()
                             Capsule()
-                                .frame(width: standardSize, height: 5)
+                                .frame(width: const.gridSize, height: const.gridSpacing)
                             Spacer()
-                        }.frame(height: standardSize, alignment: .center)
+                        }.frame(height: const.gridSize, alignment: .center)
                         
                         HStack {
                             Spacer()
                             Capsule()
-                                .frame(width: 5, height: standardSize)
+                                .frame(width: const.gridSpacing, height: const.gridSize)
                             Spacer()
                             Capsule()
-                                .frame(width: 5, height: standardSize)
+                                .frame(width: const.gridSpacing, height: const.gridSize)
                             Spacer()
-                        }.frame(width: standardSize, alignment: .center)
+                        }.frame(width: const.gridSize, alignment: .center)
                         
-                        VStack(spacing: 15) {
+                        VStack(spacing: const.gridSpacing * 3) {
                             ForEach(0..<3, id: \.self) {i in
                                 HStack(spacing: 15) {
                                     ForEach(0..<3, id: \.self) {j in
                                         TicTacView(i, j)
                                     }
-                                }.frame(width: standardSize - 10)
+                                }.frame(width: const.gridSize - const.gameSpacing)
                             }
-                        }.frame(width: standardSize - 10, height: standardSize - 10)
-                    }.frame(width: standardSize, height: standardSize)
+                        }.frame(width: const.gridSize - const.gameSpacing, height: const.gridSize - const.gameSpacing)
+                    }.frame(width: const.gridSize, height: const.gridSize)
                 }
                 
-                Spacer().frame(height: 5)
+                Spacer().frame(height: const.gameSpacing)
                 
                 // Score Board
-                HStack(spacing: 10) {
+                HStack(spacing: const.gameSpacing) {
                     PlayerScoreView(.cross)
                     PlayerScoreView(.nought)
-                }.frame(height: 80)
+                }.frame(height: const.scoreViewHeight)
                 
-                Spacer().frame(height: 10)
+                Spacer().frame(height: const.gameSpacing)
                 
                 // Resets
-                HStack(spacing: 10) {
+                HStack(spacing: const.gameSpacing) {
                     ResetView("Reset Board", .leftToRight, "goforward", .grid)
                     ResetView("Reset Score", .rightToLeft, "gobackward", .score)
-                }.frame(height: 35)
+                }.frame(height: const.resetViewHeight)
                 
-                Spacer().frame(height: 10)
+                Spacer().frame(height: const.gameSpacing)
                 
                 // AI Controls
                 ZStack {
                     Rectangle()
-                        .foregroundColor(.primary.opacity(0.05))
-                        .cornerRadius(10)
+                        .foregroundColor(const.backgroundColour)
+                        .cornerRadius(const.cornerRadius)
                     
                     HStack(spacing: 0) {
                         Spacer().frame(width: 5)
@@ -132,18 +133,18 @@ struct ContentView: View {
                         ZStack {
                             HStack(spacing: 0) {
                                 Rectangle()
-                                    .foregroundColor(tess.AIPlayer == .cross ? .cyan.opacity(0.7) : .primary.opacity(0.1))
+                                    .foregroundColor(tess.AIPlayer == .cross ? const.highlightColour : const.foregroundColour)
                                     .frame(width: 36, height: 35)
                                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
-                                    .transition(tess.constTransition)
+                                    .transition(const.transition)
                                 
                                 Spacer().frame(width: 3)
                                 
                                 Rectangle()
-                                    .foregroundColor(tess.AIPlayer == .nought ? .cyan.opacity(0.7) : .primary.opacity(0.1))
+                                    .foregroundColor(tess.AIPlayer == .nought ? const.highlightColour : const.foregroundColour)
                                     .frame(width: 36, height: 35)
                                     .cornerRadius(10, corners: [.topRight, .bottomRight])
-                                    .transition(tess.constTransition)
+                                    .transition(const.transition)
                             }.frame(width: 72)
                             
                             
@@ -183,30 +184,30 @@ struct ContentView: View {
                             }
                         }
                         
-                        Spacer().frame(width: 10)
+                        Spacer().frame(width: const.gameSpacing)
                         
                         ZStack {
                             HStack(spacing: 0) {
                                 Rectangle()
-                                    .foregroundColor(tess.AIDifficulty == .noob ? .cyan.opacity(0.7) : .primary.opacity(0.1))
+                                    .foregroundColor(tess.AIDifficulty == .noob ? const.highlightColour : const.foregroundColour)
                                     .frame(width: 56, height: 35)
-                                    .cornerRadius(10, corners: [.topLeft, .bottomLeft])
-                                    .transition(tess.constTransition)
+                                    .cornerRadius(const.cornerRadius, corners: [.topLeft, .bottomLeft])
+                                    .transition(const.transition)
                                 
                                 Spacer().frame(width: 3)
                                 
                                 Rectangle()
-                                    .foregroundColor(tess.AIDifficulty == .human ? .cyan.opacity(0.7) : .primary.opacity(0.1))
+                                    .foregroundColor(tess.AIDifficulty == .human ? const.highlightColour : const.foregroundColour)
                                     .frame(width: 56, height: 35)
-                                    .transition(tess.constTransition)
+                                    .transition(const.transition)
                                 
                                 Spacer().frame(width: 3)
                                 
                                 Rectangle()
-                                    .foregroundColor(tess.AIDifficulty == .ai ? .cyan.opacity(0.7) : .primary.opacity(0.1))
+                                    .foregroundColor(tess.AIDifficulty == .ai ? const.highlightColour : const.foregroundColour)
                                     .frame(width: 56, height: 35)
-                                    .cornerRadius(10, corners: [.topRight, .bottomRight])
-                                    .transition(tess.constTransition)
+                                    .cornerRadius(const.cornerRadius, corners: [.topRight, .bottomRight])
+                                    .transition(const.transition)
                             }.frame(width: 173)
                             
                             HStack(spacing: 0) {
@@ -240,7 +241,7 @@ struct ContentView: View {
                     }
                     
                     Spacer().frame(width: 5)
-                }.frame(width: 310, height: 40)
+                }.frame(width: const.gameWidth, height: 40)
             }
             
             // Locking Cover

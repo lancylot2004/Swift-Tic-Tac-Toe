@@ -81,10 +81,7 @@ class Tesseract: ObservableObject {
     @Published var AIPlayer: state = .none
     @Published var AIDifficulty: AIState = .noob
     
-    /// Constants
-    public let constTransition: AnyTransition =
-        .opacity.animation(.easeInOut(duration: 0.1))
-        .combined(with: .scale.animation(.easeInOut(duration: 0.1)))
+
     
     /// Haptics
     private let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -119,7 +116,7 @@ class Tesseract: ObservableObject {
             }
         }
         
-        let _ = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { [self] _ in
+        let _ = Timer.scheduledTimer(withTimeInterval: resetCountdownFull, repeats: false) { [self] _ in
             resetGrid()
             winningPair = nil
             player = .cross
@@ -189,7 +186,7 @@ class Tesseract: ObservableObject {
         if player != AIPlayer { return }
         
         locked = true
-        resetCountdownFull = 1
+        resetCountdownFull = 0.7
         
         let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
             resetCountdown -= 0.01
@@ -200,7 +197,7 @@ class Tesseract: ObservableObject {
             }
         }
         
-        let _ = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [self] _ in
+        let _ = Timer.scheduledTimer(withTimeInterval: resetCountdownFull, repeats: false) { [self] _ in
             switch AIDifficulty {
                 case .noob: noobTurn()
                 case .human: return

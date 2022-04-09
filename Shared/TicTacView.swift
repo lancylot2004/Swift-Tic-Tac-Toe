@@ -29,26 +29,26 @@ struct TicTacView: View {
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: 45))
-                        .transition(tess.constTransition)
+                        .transition(const.transition)
                         
                     Capsule()
                         .frame(width: 70, height: 5, alignment: .center)
                         .rotationEffect(Angle(degrees: -45))
-                        .transition(tess.constTransition)
+                        .transition(const.transition)
                 }
             } else if self.state == .nought {
                 Circle()
                     .strokeBorder(.primary, lineWidth: 5)
                     .frame(width: 60, height: 60, alignment: .center)
-                    .transition(tess.constTransition)
+                    .transition(const.transition)
             }
             
             // Ze Button
             if !self.locked {
                 Rectangle()
-                    .frame(width: 75, height: 75)
-                    .foregroundColor(.primary.opacity(0.05))
-                    .cornerRadius(10)
+                    .frame(width: const.squareSize, height: const.squareSize)
+                    .foregroundColor(const.backgroundColour)
+                    .cornerRadius(const.cornerRadius)
                     .transition(.opacity.animation(.easeIn(duration: 0.1)).combined(with: .scale.animation(.easeIn(duration: 0.1))))
                     .onTapGesture {
                         self.locked.toggle()
@@ -67,7 +67,7 @@ struct TicTacView: View {
                     }
             }
         }
-        .frame(width: 75, height: 75)
+        .frame(width: const.squareSize, height: const.squareSize)
         .onChange(of: tess.grid[row][column]) { _ in
             self.state = tess.grid[row][column]
             self.locked = self.state == .cross || self.state == .nought

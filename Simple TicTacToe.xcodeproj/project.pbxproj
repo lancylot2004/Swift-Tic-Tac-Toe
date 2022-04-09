@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F53A2E482801EC29009C59CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53A2E472801EC29009C59CF /* Constants.swift */; };
+		F53A2E492801EC29009C59CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53A2E472801EC29009C59CF /* Constants.swift */; };
 		F59506322800C680005EF5CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59506312800C680005EF5CA /* UIKit.framework */; };
 		F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
 		F5A3D5A627FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
@@ -25,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F53A2E472801EC29009C59CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F59506312800C680005EF5CA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
 		F5A3D59627FB22B600DE2819 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +90,7 @@
 				F5A3D5BC27FB449700DE2819 /* Tesseract.swift */,
 				F5A3D59727FB22BB00DE2819 /* Assets.xcassets */,
 				F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */,
+				F53A2E472801EC29009C59CF /* Constants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -210,6 +214,7 @@
 				F5E8226927FEF94D00337B88 /* PlayerScoreView.swift in Sources */,
 				F5A3D5B727FB295600DE2819 /* TicTacView.swift in Sources */,
 				F5A3D5A727FB22BB00DE2819 /* ContentView.swift in Sources */,
+				F53A2E482801EC29009C59CF /* Constants.swift in Sources */,
 				F5A3D5BD27FB449700DE2819 /* Tesseract.swift in Sources */,
 				F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
 			);
@@ -223,6 +228,7 @@
 				F5E8226A27FEF94D00337B88 /* PlayerScoreView.swift in Sources */,
 				F5A3D5B827FB295600DE2819 /* TicTacView.swift in Sources */,
 				F5A3D5A827FB22BB00DE2819 /* ContentView.swift in Sources */,
+				F53A2E492801EC29009C59CF /* Constants.swift in Sources */,
 				F5A3D5BE27FB449700DE2819 /* Tesseract.swift in Sources */,
 				F5A3D5A627FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
 			);
