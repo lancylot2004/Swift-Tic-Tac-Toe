@@ -78,7 +78,7 @@ class Tesseract: ObservableObject {
         }
     }
     
-    @Published var AIPlayer: state = .nought
+    @Published var AIPlayer: state = .none
     @Published var AIDifficulty: AIState = .noob
     
     /// Constants
