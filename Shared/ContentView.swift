@@ -124,9 +124,9 @@ struct ContentView: View {
                     HStack(spacing: 0) {
                         Spacer().frame(width: 5)
                         
-                        Text("\"AI\"")
-                            .font(.system(size: 20, weight: .bold, design: .rounded))
-                            .frame(width: 40)
+                        Text("Computer Plays: ")
+                            .font(.system(size: 12, weight: .bold, design: .rounded))
+                            .frame(width: 105)
                         
                         Spacer().frame(width: 5)
                             
@@ -190,30 +190,23 @@ struct ContentView: View {
                             HStack(spacing: 0) {
                                 Rectangle()
                                     .foregroundColor(tess.AIDifficulty == .noob ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 56, height: 35)
+                                    .frame(width: 50, height: 35)
                                     .cornerRadius(const.cornerRadius, corners: [.topLeft, .bottomLeft])
                                     .transition(const.transition)
                                 
                                 Spacer().frame(width: 3)
                                 
                                 Rectangle()
-                                    .foregroundColor(tess.AIDifficulty == .human ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 56, height: 35)
-                                    .transition(const.transition)
-                                
-                                Spacer().frame(width: 3)
-                                
-                                Rectangle()
-                                    .foregroundColor(tess.AIDifficulty == .ai ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 56, height: 35)
+                                    .foregroundColor(tess.AIDifficulty == .expert ? const.highlightColour : const.foregroundColour)
+                                    .frame(width: 50, height: 35)
                                     .cornerRadius(const.cornerRadius, corners: [.topRight, .bottomRight])
                                     .transition(const.transition)
-                            }.frame(width: 173)
+                            }.frame(width: 100)
                             
                             HStack(spacing: 0) {
                                 Text("Noob")
                                     .font(.system(size: 15, weight: .bold, design: .rounded))
-                                    .frame(width: 56, height: 35)
+                                    .frame(width: 48.5, height: 35)
                                     .minimumScaleFactor(0.1)
                                     .onTapGesture { withAnimation { tess.AIDifficulty = .noob } }
                                 
@@ -221,22 +214,12 @@ struct ContentView: View {
                                     .frame(width: 3, height: 35)
                                     .foregroundColor(.primary.opacity(0.3))
                                 
-                                Text("Human")
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                                    .frame(width: 56, height: 35)
+                                Text("Expert")
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .frame(width: 48.5, height: 35)
                                     .minimumScaleFactor(0.1)
-                                    .onTapGesture { withAnimation { tess.AIDifficulty = .human } }
-                                
-                                Rectangle()
-                                    .frame(width: 3, height: 35)
-                                    .foregroundColor(.primary.opacity(0.3))
-                                
-                                Text("\"AI\"")
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                                    .frame(width: 56, height: 35)
-                                    .minimumScaleFactor(0.1)
-                                    .onTapGesture { withAnimation { tess.AIDifficulty = .ai } }
-                            }.frame(width: 173)
+                                    .onTapGesture { withAnimation { tess.AIDifficulty = .expert } }
+                            }.frame(width: 100)
                         }
                     }
                     

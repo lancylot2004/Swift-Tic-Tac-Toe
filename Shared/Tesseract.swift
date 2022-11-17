@@ -23,8 +23,7 @@ enum gridState {
 
 enum AIState {
     case noob
-    case human
-    case ai
+    case expert
 }
 
 enum resetOption {
@@ -122,6 +121,7 @@ class Tesseract: ObservableObject {
             player = .cross
             locked = false
             winning = false
+            AIProcess()
         }
     }
     
@@ -133,48 +133,55 @@ class Tesseract: ObservableObject {
     }
     
     /// --Validation Functions--
-    /// Takes an array of `squareState`s and determines if it constitutes a win for either player.
-    private func processSet(_ set: Array<state>) -> Bool {
+    /// Takes an array of `squareState`s and determines if it constitutes a win for either player. Will only change game state if `touch` is true.
+    private func processSet(_ set: Array<state>, touch: Bool = true) -> state {
         if set.count == 1 {
             switch set[0] {
-            case .cross: crossScore += 1; animatedResetGrid(); return true
-            case .nought: noughtScore += 1; animatedResetGrid(); return true
-            case .none: return false
+                case .cross: crossScore += 1; if touch { animatedResetGrid() }; return .cross
+                case .nought: noughtScore += 1; if touch { animatedResetGrid() }; return .nought
+                case .none: return .none
             }
         } else {
-            return false
+            return .none
         }
     }
     
     /// Performs a check for winners for the current grid.
-    public func checkGrid() {
+    @discardableResult
+    public func checkGrid(_ grid: Array<Array<state>>, touch: Bool = true) -> state {
+        var result: state = .none
+        
         // Horizontal Checks
         for i in 0..<3 {
             let rowSet = Array(Set(grid[i]))
             winningPair = [i, 0, i, 2]
-            if processSet(rowSet) { return }
+            result = processSet(rowSet, touch: touch)
+            if result != .none { return result }
         }
         
         // Vertical Checks
         for i in 0..<3 {
             let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
             winningPair = [0, i, 2, i]
-            if processSet(columnSet) { return }
+            result = processSet(columnSet, touch: touch)
+            if result != .none { return result }
         }
         
         // Diagonal Checks
         let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
         winningPair = [0, 0, 2, 2]
-        if processSet(leftToRightSet) { return }
+        result = processSet(leftToRightSet, touch: touch)
+        if result != .none { return result }
         
         let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
         winningPair = [2, 0, 0, 2]
-        if processSet(rightToLeftSet) { return }
+        result = processSet(rightToLeftSet, touch: touch)
+        if result != .none { return result }
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
-        if !allSet.contains(.none) { drawScore += 1; animatedResetGrid(); return }
+        if !allSet.contains(.none) { drawScore += 1; animatedResetGrid(); return .none }
         
-        return
+        return .none
     }
     
     /// Toggles `player`
@@ -200,11 +207,10 @@ class Tesseract: ObservableObject {
         let _ = Timer.scheduledTimer(withTimeInterval: resetCountdownFull, repeats: false) { [self] _ in
             switch AIDifficulty {
                 case .noob: noobTurn()
-                case .human: return
-                case .ai: return
+                case .expert: expertTurn()
             }
             
-            checkGrid()
+            checkGrid(self.grid)
             locked = false
         }
     }
@@ -221,12 +227,15 @@ class Tesseract: ObservableObject {
         }
     }
     
-    private func humanTurn() {
+    /// Uses minimax to completely over-engineer tic-tac-toe.
+    private func expertTurn() {
         noobTurn()
-    }
-    
-    private func AITurn() {
-        noobTurn()
+//        let bestSolution = minimax(grid: self.grid)
+//
+//        if bestSolution.1 != -1 && bestSolution.2 != -1 {
+//            self.grid[bestSolution.1][bestSolution.2] = player
+//            togglePlayer()
+//        }
     }
     
     /// Singleton

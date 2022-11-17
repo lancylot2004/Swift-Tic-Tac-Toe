@@ -61,7 +61,7 @@ struct TicTacView: View {
                             
                             tess.grid[row][column] = self.state
                             tess.togglePlayer()
-                            tess.checkGrid()
+                            tess.checkGrid(tess.grid)
                             tess.AIProcess()
                         }
                     }
