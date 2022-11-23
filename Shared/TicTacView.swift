@@ -12,7 +12,7 @@ struct TicTacView: View {
     
     private var row: Int
     private var column: Int
-    @State private var state: state = .none
+    @State private var state: CellState = .none
     @State private var locked: Bool = false
     
     init(_ row: Int, _ column: Int) {

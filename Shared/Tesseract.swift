@@ -8,7 +8,7 @@
 import SwiftUI
 import UIKit
 
-enum state {
+enum CellState {
     case none
     case cross
     case nought
@@ -56,17 +56,30 @@ extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         ModifiedContent(content: self, modifier: CornerRadiusStyle(radius: radius, corners: corners))
     }
+    
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
 }
 
 class Tesseract: ObservableObject {
     /// Variables
-    @Published var grid: Array<Array<state>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
-    @Published var player: state = .cross
+    @Published var grid: Array<Array<CellState>> = [[.none, .none, .none],[.none, .none, .none],[.none, .none, .none]]
+    @Published var player: CellState = .cross
     
     @Published var crossScore: Int = 0
     @Published var noughtScore: Int = 0
     @Published var drawScore: Int = 0
-    @Published var winningPair: Array<Int>? = nil
+    @Published var winningPair: (Int, Int, Int, Int, CellState) = (-1 ,-1, -1, -1, .none)
     @Published var winning: Bool = false
     
     @Published var locked: Bool = false
@@ -77,10 +90,8 @@ class Tesseract: ObservableObject {
         }
     }
     
-    @Published var AIPlayer: state = .none
+    @Published var AIPlayer: CellState = .none
     @Published var AIDifficulty: AIState = .noob
-    
-
     
     /// Haptics
     private let generator = UIImpactFeedbackGenerator(style: .heavy)
@@ -117,7 +128,7 @@ class Tesseract: ObservableObject {
         
         let _ = Timer.scheduledTimer(withTimeInterval: resetCountdownFull, repeats: false) { [self] _ in
             resetGrid()
-            winningPair = nil
+            winningPair = (-1, -1, -1, -1, .none)
             player = .cross
             locked = false
             winning = false
@@ -134,7 +145,7 @@ class Tesseract: ObservableObject {
     
     /// --Validation Functions--
     /// Takes an array of `squareState`s and determines if it constitutes a win for either player. Will only change game state if `touch` is true.
-    private func processSet(_ set: Array<state>, touch: Bool = true) -> state {
+    private func processSet(_ set: Array<CellState>, touch: Bool = true) -> CellState {
         if set.count == 1 {
             switch set[0] {
                 case .cross: crossScore += 1; if touch { animatedResetGrid() }; return .cross
@@ -148,35 +159,33 @@ class Tesseract: ObservableObject {
     
     /// Performs a check for winners for the current grid.
     @discardableResult
-    public func checkGrid(_ grid: Array<Array<state>>, touch: Bool = true) -> state {
-        var result: state = .none
-        
+    public func checkGrid(_ grid: Array<Array<CellState>>, touch: Bool = true) -> CellState {
         // Horizontal Checks
         for i in 0..<3 {
             let rowSet = Array(Set(grid[i]))
-            winningPair = [i, 0, i, 2]
-            result = processSet(rowSet, touch: touch)
-            if result != .none { return result }
+            winningPair = (i, 0, i, 2, winningPair.4)
+            winningPair.4 = processSet(rowSet, touch: touch)
+            if winningPair.4 != .none { return winningPair.4 }
         }
         
         // Vertical Checks
         for i in 0..<3 {
             let columnSet = Array(Set([grid[0][i], grid[1][i], grid[2][i]]))
-            winningPair = [0, i, 2, i]
-            result = processSet(columnSet, touch: touch)
-            if result != .none { return result }
+            winningPair = (0, i, 2, i, winningPair.4)
+            winningPair.4 = processSet(columnSet, touch: touch)
+            if winningPair.4 != .none { return winningPair.4 }
         }
         
         // Diagonal Checks
         let leftToRightSet = Array(Set([grid[0][0], grid[1][1], grid[2][2]]))
-        winningPair = [0, 0, 2, 2]
-        result = processSet(leftToRightSet, touch: touch)
-        if result != .none { return result }
+        winningPair = (0, 0, 2, 2, winningPair.4)
+        winningPair.4 = processSet(leftToRightSet, touch: touch)
+        if winningPair.4 != .none { return winningPair.4 }
         
         let rightToLeftSet = Array(Set([grid[2][0], grid[1][1], grid[0][2]]))
-        winningPair = [2, 0, 0, 2]
-        result = processSet(rightToLeftSet, touch: touch)
-        if result != .none { return result }
+        winningPair = (2, 0, 0, 2, winningPair.4)
+        winningPair.4 = processSet(rightToLeftSet, touch: touch)
+        if winningPair.4 != .none { return winningPair.4 }
         
         let allSet = Array(grid[0] + grid[1] + grid[2])
         if !allSet.contains(.none) { drawScore += 1; animatedResetGrid(); return .none }

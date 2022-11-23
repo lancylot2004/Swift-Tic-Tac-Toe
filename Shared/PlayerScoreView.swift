@@ -10,11 +10,11 @@ import SwiftUI
 struct PlayerScoreView: View {
     @StateObject private var tess: Tesseract = Tesseract.global
     
-    private var state: state
+    private var state: CellState
     @State private var blinkColour: Color = .clear
     @State private var indicatorColour: Color
     
-    init(_ state: state) {
+    init(_ state: CellState) {
         self.state = state
         self.indicatorColour = state == Tesseract.global.player ? .cyan.opacity(0.7) : .clear
     }

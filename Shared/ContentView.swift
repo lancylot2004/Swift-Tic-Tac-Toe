@@ -42,20 +42,20 @@ struct ContentView: View {
                     
                     ZStack {
                         GeometryReader { geometry in
-                            if tess.winningPair != nil && tess.winning {
+                            if tess.winning && tess.winningPair.4 != .none {
                                 Path { highlight in
                                     let rect = geometry.frame(in: CoordinateSpace.named("grid"))
                                     // a + bx
                                     let a: CGFloat = (const.squareSize / 2)
                                     let b: CGFloat = const.squareSize + (const.gridSpacing * 3)
                                     highlight.move(to: CGPoint(
-                                        x: rect.minX + a + b * CGFloat(tess.winningPair![1]),
-                                        y: rect.minY + a + b * CGFloat(tess.winningPair![0]))
+                                        x: rect.minX + a + b * CGFloat(tess.winningPair.1),
+                                        y: rect.minY + a + b * CGFloat(tess.winningPair.0))
                                     )
 
                                     highlight.addLine(to: CGPoint(
-                                        x: rect.minX + a + b * CGFloat(tess.winningPair![3]),
-                                        y: rect.minY + a + b * CGFloat(tess.winningPair![2]))
+                                        x: rect.minX + a + b * CGFloat(tess.winningPair.3),
+                                        y: rect.minY + a + b * CGFloat(tess.winningPair.2))
                                     )
                                 }
                                 .stroke(style: StrokeStyle(lineWidth: const.squareSize, lineCap: .round))
