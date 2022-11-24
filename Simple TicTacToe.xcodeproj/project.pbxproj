@@ -34,7 +34,6 @@
 		F5A3D59727FB22BB00DE2819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple TicTacToe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5A3D5A427FB22BB00DE2819 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		F5A3D5B627FB295600DE2819 /* TicTacView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacView.swift; sourceTree = "<group>"; };
 		F5A3D5BC27FB449700DE2819 /* Tesseract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tesseract.swift; sourceTree = "<group>"; };
 		F5B3678627FF4CA800DC7764 /* Simple TicTacToe (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Simple TicTacToe (iOS).entitlements"; sourceTree = "<group>"; };
@@ -74,7 +73,6 @@
 			children = (
 				F5B3678627FF4CA800DC7764 /* Simple TicTacToe (iOS).entitlements */,
 				F5A3D59427FB22B600DE2819 /* Shared */,
-				F5A3D5A327FB22BB00DE2819 /* macOS */,
 				F5A3D59D27FB22BB00DE2819 /* Products */,
 				F59506302800C680005EF5CA /* Frameworks */,
 			);
@@ -102,14 +100,6 @@
 				F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		F5A3D5A327FB22BB00DE2819 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				F5A3D5A427FB22BB00DE2819 /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
