@@ -82,6 +82,8 @@ struct ResetView: View {
                     .accentColor(.primary)
                     .frame(width: 35, height: 35)
                     .onTapGesture { processTap() }
+                    .rotationEffect(Angle(degrees: 2 * self.ext))
+                    .animation(.spring(response: 0.2, dampingFraction: 0.4, blendDuration: 1))
             }.environment(\.layoutDirection, self.direction)
         }
         .frame(width: 150, height: 20)
