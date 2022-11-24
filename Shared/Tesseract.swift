@@ -138,8 +138,10 @@ class Tesseract: ObservableObject {
     
     public func reset(_ option: resetOption) {
         switch option {
-        case .grid: resetGrid()
-        case .score: resetScore()
+            case .grid:
+                resetGrid()
+                AIProcess()
+            case .score: resetScore()
         }
     }
     
