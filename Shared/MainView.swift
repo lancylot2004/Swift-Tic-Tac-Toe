@@ -35,8 +35,8 @@ struct MainView: View {
                 
                 // Resets
                 HStack(spacing: Const.Dim.GameSpacing) {
-                    ResetView("Reset Board", .leftToRight, "goforward", .grid)
-                    ResetView("Reset Score", .rightToLeft, "gobackward", .score)
+                    ResetView(String(localized: "Reset Board"), .leftToRight, "goforward", .grid)
+                    ResetView(String(localized: "Reset Score"), .rightToLeft, "gobackward", .score)
                 }.frame(height: Const.Dim.SViewHeight)
                 
                 Spacer().frame(height: Const.Dim.GameSpacing)

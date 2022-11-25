@@ -1,0 +1,5 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "无限宫格";
+
+/* Bundle name */
+"CFBundleName" = "TicTacToe";

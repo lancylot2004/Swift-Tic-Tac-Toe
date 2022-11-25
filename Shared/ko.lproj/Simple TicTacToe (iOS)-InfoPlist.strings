@@ -1,0 +1,5 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "박하 사탕 발가락";
+
+/* Bundle name */
+"CFBundleName" = "TicTacToe";

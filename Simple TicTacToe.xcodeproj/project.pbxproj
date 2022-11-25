@@ -10,6 +10,8 @@
 		8A649198293150B4004B65C2 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A649197293150B4004B65C2 /* BoardView.swift */; };
 		8A64919A2931512D004B65C2 /* ComputerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491992931512D004B65C2 /* ComputerSettingView.swift */; };
 		8A64919C293151CC004B65C2 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64919B293151CC004B65C2 /* IndicatorView.swift */; };
+		8A6491A8293163FA004B65C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A6491A6293163FA004B65C2 /* Localizable.strings */; };
+		8A6491AB293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A6491A9293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings */; };
 		F53A2E482801EC29009C59CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53A2E472801EC29009C59CF /* Constants.swift */; };
 		F59506322800C680005EF5CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59506312800C680005EF5CA /* UIKit.framework */; };
 		F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
@@ -25,6 +27,16 @@
 		8A649197293150B4004B65C2 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		8A6491992931512D004B65C2 /* ComputerSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerSettingView.swift; sourceTree = "<group>"; };
 		8A64919B293151CC004B65C2 /* IndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorView.swift; sourceTree = "<group>"; };
+		8A6491A7293163FA004B65C2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8A6491AA293163FA004B65C2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
+		8A6491AC29316402004B65C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8A6491AD29316402004B65C2 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "ru.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
+		8A6491AE293164FF004B65C2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8A6491AF293164FF004B65C2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = "ko.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
+		8A6491B029316507004B65C2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8A6491B129316507004B65C2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
+		8A6491B22931650B004B65C2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		8A6491B32931650B004B65C2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
 		F53A2E472801EC29009C59CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F59506312800C680005EF5CA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeApp.swift; sourceTree = "<group>"; };
@@ -90,6 +102,7 @@
 		F5A3D58F27FB22B600DE2819 = {
 			isa = PBXGroup;
 			children = (
+				8A6491A9293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings */,
 				F5B3678627FF4CA800DC7764 /* Simple TicTacToe (iOS).entitlements */,
 				F5A3D59427FB22B600DE2819 /* Shared */,
 				F5A3D59D27FB22BB00DE2819 /* Products */,
@@ -100,6 +113,7 @@
 		F5A3D59427FB22B600DE2819 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				8A6491A6293163FA004B65C2 /* Localizable.strings */,
 				8A6491962931509C004B65C2 /* Core */,
 				8A64919529315089004B65C2 /* SectionViews */,
 				8A6491942931506C004B65C2 /* ComponentViews */,
@@ -160,6 +174,12 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
+				ru,
+				"en-GB",
+				es,
+				ko,
+				"zh-Hans",
 			);
 			mainGroup = F5A3D58F27FB22B600DE2819;
 			productRefGroup = F5A3D59D27FB22BB00DE2819 /* Products */;
@@ -177,6 +197,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A3D5A927FB22BB00DE2819 /* Assets.xcassets in Resources */,
+				8A6491A8293163FA004B65C2 /* Localizable.strings in Resources */,
+				8A6491AB293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +223,34 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8A6491A6293163FA004B65C2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A6491A7293163FA004B65C2 /* zh-Hans */,
+				8A6491AC29316402004B65C2 /* ru */,
+				8A6491AE293164FF004B65C2 /* ko */,
+				8A6491B029316507004B65C2 /* es */,
+				8A6491B22931650B004B65C2 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		8A6491A9293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A6491AA293163FA004B65C2 /* zh-Hans */,
+				8A6491AD29316402004B65C2 /* ru */,
+				8A6491AF293164FF004B65C2 /* ko */,
+				8A6491B129316507004B65C2 /* es */,
+				8A6491B32931650B004B65C2 /* zh-Hant */,
+			);
+			name = "Simple TicTacToe (iOS)-InfoPlist.strings";
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F5A3D5AB27FB22BB00DE2819 /* Debug */ = {
