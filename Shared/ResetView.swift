@@ -48,7 +48,7 @@ struct ResetView: View {
                         .gesture(DragGesture(minimumDistance: 0)
                         .updating(self.$ext) { value, state, _ in
                             let modifier: CGFloat = direction == .leftToRight ? 1 : -1
-                            let tempWidth: CGFloat = value.translation.width * modifier
+                            let tempWidth: CGFloat = value.translation.width * modifier * 1.5
                             
                             
                             switch tempWidth {
