@@ -11,22 +11,14 @@
 		8A64919A2931512D004B65C2 /* ComputerSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491992931512D004B65C2 /* ComputerSettingView.swift */; };
 		8A64919C293151CC004B65C2 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64919B293151CC004B65C2 /* IndicatorView.swift */; };
 		F53A2E482801EC29009C59CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53A2E472801EC29009C59CF /* Constants.swift */; };
-		F53A2E492801EC29009C59CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53A2E472801EC29009C59CF /* Constants.swift */; };
 		F59506322800C680005EF5CA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59506312800C680005EF5CA /* UIKit.framework */; };
 		F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
-		F5A3D5A627FB22BB00DE2819 /* TicTacToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */; };
 		F5A3D5A727FB22BB00DE2819 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59627FB22B600DE2819 /* MainView.swift */; };
-		F5A3D5A827FB22BB00DE2819 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D59627FB22B600DE2819 /* MainView.swift */; };
 		F5A3D5A927FB22BB00DE2819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5A3D59727FB22BB00DE2819 /* Assets.xcassets */; };
-		F5A3D5AA27FB22BB00DE2819 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5A3D59727FB22BB00DE2819 /* Assets.xcassets */; };
 		F5A3D5B727FB295600DE2819 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5B627FB295600DE2819 /* CellView.swift */; };
-		F5A3D5B827FB295600DE2819 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5B627FB295600DE2819 /* CellView.swift */; };
 		F5A3D5BD27FB449700DE2819 /* Tesseract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5BC27FB449700DE2819 /* Tesseract.swift */; };
-		F5A3D5BE27FB449700DE2819 /* Tesseract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5A3D5BC27FB449700DE2819 /* Tesseract.swift */; };
 		F5E8226927FEF94D00337B88 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */; };
-		F5E8226A27FEF94D00337B88 /* PlayerScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226827FEF94D00337B88 /* PlayerScoreView.swift */; };
 		F5E8226C27FF002800337B88 /* ResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226B27FF002800337B88 /* ResetView.swift */; };
-		F5E8226D27FF002800337B88 /* ResetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E8226B27FF002800337B88 /* ResetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +31,6 @@
 		F5A3D59627FB22B600DE2819 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F5A3D59727FB22BB00DE2819 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Simple TicTacToe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5A3D5B627FB295600DE2819 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		F5A3D5BC27FB449700DE2819 /* Tesseract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tesseract.swift; sourceTree = "<group>"; };
 		F5B3678627FF4CA800DC7764 /* Simple TicTacToe (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Simple TicTacToe (iOS).entitlements"; sourceTree = "<group>"; };
@@ -53,13 +44,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F59506322800C680005EF5CA /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5A3D59F27FB22BB00DE2819 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */,
-				F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,23 +138,6 @@
 			productReference = F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */;
 			productType = "com.apple.product-type.application";
 		};
-		F5A3D5A127FB22BB00DE2819 /* Simple TicTacToe (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F5A3D5B027FB22BB00DE2819 /* Build configuration list for PBXNativeTarget "Simple TicTacToe (macOS)" */;
-			buildPhases = (
-				F5A3D59E27FB22BB00DE2819 /* Sources */,
-				F5A3D59F27FB22BB00DE2819 /* Frameworks */,
-				F5A3D5A027FB22BB00DE2819 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Simple TicTacToe (macOS)";
-			productName = "Simple TicTacToe (macOS)";
-			productReference = F5A3D5A227FB22BB00DE2819 /* Simple TicTacToe.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -180,12 +146,9 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1330;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					F5A3D59B27FB22BB00DE2819 = {
-						CreatedOnToolsVersion = 13.3;
-					};
-					F5A3D5A127FB22BB00DE2819 = {
 						CreatedOnToolsVersion = 13.3;
 					};
 				};
@@ -204,7 +167,6 @@
 			projectRoot = "";
 			targets = (
 				F5A3D59B27FB22BB00DE2819 /* Simple TicTacToe (iOS) */,
-				F5A3D5A127FB22BB00DE2819 /* Simple TicTacToe (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -215,14 +177,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5A3D5A927FB22BB00DE2819 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5A3D5A027FB22BB00DE2819 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5A3D5AA27FB22BB00DE2819 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,20 +197,6 @@
 				8A649198293150B4004B65C2 /* BoardView.swift in Sources */,
 				F5A3D5BD27FB449700DE2819 /* Tesseract.swift in Sources */,
 				F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F5A3D59E27FB22BB00DE2819 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F5E8226D27FF002800337B88 /* ResetView.swift in Sources */,
-				F5E8226A27FEF94D00337B88 /* PlayerScoreView.swift in Sources */,
-				F5A3D5B827FB295600DE2819 /* CellView.swift in Sources */,
-				F5A3D5A827FB22BB00DE2819 /* MainView.swift in Sources */,
-				F53A2E492801EC29009C59CF /* Constants.swift in Sources */,
-				F5A3D5BE27FB449700DE2819 /* Tesseract.swift in Sources */,
-				F5A3D5A627FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +236,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -354,6 +295,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -461,64 +403,6 @@
 			};
 			name = Release;
 		};
-		F5A3D5B127FB22BB00DE2819 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KTK5R8QJ6S;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tic-Tac-Toe";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
-				PRODUCT_NAME = "Simple TicTacToe";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		F5A3D5B227FB22BB00DE2819 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KTK5R8QJ6S;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Tic-Tac-Toe";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
-				PRODUCT_NAME = "Simple TicTacToe";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -536,15 +420,6 @@
 			buildConfigurations = (
 				F5A3D5AE27FB22BB00DE2819 /* Debug */,
 				F5A3D5AF27FB22BB00DE2819 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F5A3D5B027FB22BB00DE2819 /* Build configuration list for PBXNativeTarget "Simple TicTacToe (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F5A3D5B127FB22BB00DE2819 /* Debug */,
-				F5A3D5B227FB22BB00DE2819 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
