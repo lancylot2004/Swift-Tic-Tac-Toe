@@ -27,8 +27,8 @@ class const {
     
     static let cornerRadius: CGFloat = 10
     
-    static let scoreViewHeight: CGFloat = 80
-    static let resetViewHeight: CGFloat = 35
+    static let largeViewHeight: CGFloat = 80
+    static let smallViewHeight: CGFloat = 35
     
     // Colours
     static let indicatorColour: Color = .green.opacity(0.9)

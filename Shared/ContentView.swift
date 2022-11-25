@@ -103,7 +103,7 @@ struct ContentView: View {
                 HStack(spacing: const.gameSpacing) {
                     PlayerScoreView(.cross)
                     PlayerScoreView(.nought)
-                }.frame(height: const.scoreViewHeight)
+                }.frame(height: const.largeViewHeight)
                 
                 Spacer().frame(height: const.gameSpacing)
                 
@@ -111,7 +111,7 @@ struct ContentView: View {
                 HStack(spacing: const.gameSpacing) {
                     ResetView("Reset Board", .leftToRight, "goforward", .grid)
                     ResetView("Reset Score", .rightToLeft, "gobackward", .score)
-                }.frame(height: const.resetViewHeight)
+                }.frame(height: const.smallViewHeight)
                 
                 Spacer().frame(height: const.gameSpacing)
                 
@@ -134,7 +134,7 @@ struct ContentView: View {
                             HStack(spacing: 0) {
                                 Rectangle()
                                     .foregroundColor(tess.AIPlayer == .cross ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 36, height: 35)
+                                    .frame(width: 36, height: const.smallViewHeight)
                                     .cornerRadius(10, corners: [.topLeft, .bottomLeft])
                                     .transition(const.transition)
                                 
@@ -142,7 +142,7 @@ struct ContentView: View {
                                 
                                 Rectangle()
                                     .foregroundColor(tess.AIPlayer == .nought ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 36, height: 35)
+                                    .frame(width: 36, height: const.smallViewHeight)
                                     .cornerRadius(10, corners: [.topRight, .bottomRight])
                                     .transition(const.transition)
                             }.frame(width: 72)
@@ -158,7 +158,7 @@ struct ContentView: View {
                                         .frame(width: 30, height: 3, alignment: .center)
                                         .rotationEffect(Angle(degrees: -45))
                                 }
-                                .frame(width: 35, height: 35)
+                                .frame(width: 35, height: const.smallViewHeight)
                                 .onTapGesture {
                                     withAnimation {
                                         tess.AIPlayer = (tess.AIPlayer == .none || tess.AIPlayer == .nought) ? .cross : .none
@@ -168,7 +168,7 @@ struct ContentView: View {
                                 }
                                 
                                 Rectangle()
-                                    .frame(width: 3, height: 35)
+                                    .frame(width: 3, height: const.smallViewHeight)
                                     .foregroundColor(.primary.opacity(0.3))
                                 
                                 Circle()
@@ -190,7 +190,7 @@ struct ContentView: View {
                             HStack(spacing: 0) {
                                 Rectangle()
                                     .foregroundColor(tess.AIDifficulty == .noob ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 50, height: 35)
+                                    .frame(width: 46, height: const.smallViewHeight)
                                     .cornerRadius(const.cornerRadius, corners: [.topLeft, .bottomLeft])
                                     .transition(const.transition)
                                 
@@ -198,25 +198,25 @@ struct ContentView: View {
                                 
                                 Rectangle()
                                     .foregroundColor(tess.AIDifficulty == .expert ? const.highlightColour : const.foregroundColour)
-                                    .frame(width: 50, height: 35)
+                                    .frame(width: 50, height: const.smallViewHeight)
                                     .cornerRadius(const.cornerRadius, corners: [.topRight, .bottomRight])
                                     .transition(const.transition)
                             }.frame(width: 100)
                             
                             HStack(spacing: 0) {
                                 Text("Noob")
-                                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                                    .frame(width: 48.5, height: 35)
+                                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                                    .frame(width: 46, height: const.smallViewHeight)
                                     .minimumScaleFactor(0.1)
                                     .onTapGesture { withAnimation { tess.AIDifficulty = .noob } }
                                 
                                 Rectangle()
-                                    .frame(width: 3, height: 35)
+                                    .frame(width: 3, height: const.smallViewHeight)
                                     .foregroundColor(.primary.opacity(0.3))
                                 
                                 Text("Expert")
                                     .font(.system(size: 14, weight: .bold, design: .rounded))
-                                    .frame(width: 48.5, height: 35)
+                                    .frame(width: 50, height: const.smallViewHeight)
                                     .minimumScaleFactor(0.1)
                                     .onTapGesture { withAnimation { tess.AIDifficulty = .expert } }
                             }.frame(width: 100)
