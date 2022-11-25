@@ -200,6 +200,7 @@ class Tesseract: ObservableObject {
     
     /// (*not*) ARTIFICIAL INTELLIGENCE
     func AIProcess() {
+        if locked == true { return }
         if AIPlayer == .none { return }
         if player != AIPlayer { return }
         
