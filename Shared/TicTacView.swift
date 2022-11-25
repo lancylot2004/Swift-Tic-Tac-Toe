@@ -51,17 +51,14 @@ struct TicTacView: View {
                     .cornerRadius(const.cornerRadius)
                     .transition(.opacity.animation(.easeIn(duration: 0.1)).combined(with: .scale.animation(.easeIn(duration: 0.1))))
                     .onTapGesture {
-                        self.locked.toggle()
+                        if self.locked { return }
+                        self.locked = true
+                        
                         withAnimation(Animation.easeInOut(duration: 0.3)) {
-                            switch tess.player {
-                            case .cross: self.state = .cross
-                            case .nought: self.state = .nought
-                            case .none: break
-                            }
-                            
+                            self.state = tess.player
                             tess.grid[row][column] = self.state
-                            tess.togglePlayer()
                             tess.checkGrid(tess.grid)
+                            tess.togglePlayer()
                             tess.AIProcess()
                         }
                     }
