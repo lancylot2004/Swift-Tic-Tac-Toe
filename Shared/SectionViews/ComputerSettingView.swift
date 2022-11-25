@@ -87,7 +87,7 @@ struct ComputerSettingView: View {
                     HStack(spacing: 0) {
                         Rectangle()
                             .foregroundColor(tess.AIDifficulty == .noob ? Const.Colour.Highlight : Const.Colour.Foreground)
-                            .frame(width: 46, height: Const.Dim.SViewHeight)
+                            .frame(width: 48, height: Const.Dim.SViewHeight)
                             .cornerRadius(Const.Dim.CornerRadius, corners: [.topLeft, .bottomLeft])
                             .transition(Const.Animation.Fade)
                         
@@ -95,7 +95,7 @@ struct ComputerSettingView: View {
                         
                         Rectangle()
                             .foregroundColor(tess.AIDifficulty == .expert ? Const.Colour.Highlight : Const.Colour.Foreground)
-                            .frame(width: 50, height: Const.Dim.SViewHeight)
+                            .frame(width: 48, height: Const.Dim.SViewHeight)
                             .cornerRadius(Const.Dim.CornerRadius, corners: [.topRight, .bottomRight])
                             .transition(Const.Animation.Fade)
                     }.frame(width: 100)
@@ -103,8 +103,11 @@ struct ComputerSettingView: View {
                     HStack(spacing: 0) {
                         Text("Noob")
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .frame(width: 46, height: Const.Dim.SViewHeight)
-                            .minimumScaleFactor(0.1)
+                            .frame(width: 45, height: Const.Dim.SViewHeight)
+                            .minimumScaleFactor(0.01)
+                            .scaledToFill()
+                            .lineLimit(1)
+                            .padding(.leading, 3)
                             .onTapGesture { withAnimation { tess.AIDifficulty = .noob } }
                         
                         Rectangle()
@@ -113,8 +116,11 @@ struct ComputerSettingView: View {
                         
                         Text("Expert")
                             .font(.system(size: 14, weight: .bold, design: .rounded))
-                            .frame(width: 50, height: Const.Dim.SViewHeight)
-                            .minimumScaleFactor(0.1)
+                            .frame(width: 45, height: Const.Dim.SViewHeight)
+                            .minimumScaleFactor(0.01)
+                            .scaledToFill()
+                            .lineLimit(1)
+                            .padding(.trailing, 3)
                             .onTapGesture { withAnimation { tess.AIDifficulty = .expert } }
                     }.frame(width: 100)
                 }
