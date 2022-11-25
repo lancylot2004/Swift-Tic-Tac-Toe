@@ -12,6 +12,10 @@ struct TicTacToeApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .fixedSize()
+                .if(UIDevice.current.userInterfaceIdiom == .pad) { mainView in
+                    mainView.scaleEffect(1.3)
+                }
         }
     }
 }

@@ -402,7 +402,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = dev.lancy.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = dev.lancy.tictactoe;
@@ -446,7 +446,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = dev.lancy.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = dev.lancy.tictactoe;
