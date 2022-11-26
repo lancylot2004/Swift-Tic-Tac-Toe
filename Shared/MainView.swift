@@ -15,15 +15,17 @@ struct MainView: View {
     var body: some View {
         ZStack{
             VStack(spacing: 0) {
-                // Reset Indicator
-                IndicatorView()
-                
-                Spacer().frame(height: Const.Dim.LSpacing)
-                
-                // Game Board
-                BoardView()
-                
-                Spacer().frame(height: Const.Dim.LSpacing)
+                VStack(spacing: 0) {
+                    // Reset Indicator
+                    IndicatorView()
+                    
+                    Spacer().frame(height: Const.Dim.LSpacing)
+                    
+                    // Game Board
+                    BoardView()
+                    
+                    Spacer().frame(height: Const.Dim.LSpacing)
+                }
                 
                 // Score Board
                 HStack(spacing: Const.Dim.LSpacing) {
@@ -41,13 +43,13 @@ struct MainView: View {
                 
                 Spacer().frame(height: Const.Dim.LSpacing)
                 
-                // AI Controls
                 ComputerSettingView()
                 
                 Spacer().frame(height: Const.Dim.LSpacing)
                 
-                // Multiplayer Controls
-                //MultiplayerView()
+                MultiplayerView()
+            }.popover(isPresented: $tess.settingsOpened) {
+                SettingsView()
             }
             
             // Locking Cover

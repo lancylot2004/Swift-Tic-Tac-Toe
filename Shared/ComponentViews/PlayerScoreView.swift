@@ -58,7 +58,7 @@ struct PlayerScoreView: View {
                     
                     Rectangle()
                         .frame(width: 80, height: 70)
-                        .foregroundColor(.primary.opacity(0.1))
+                        .foregroundColor(Const.Colour.Foreground)
                         .cornerRadius(10)
                 }
                 

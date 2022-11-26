@@ -31,7 +31,7 @@ struct ComputerSettingView: View {
                         Rectangle()
                             .foregroundColor(tess.AIPlayer == .cross ? Const.Colour.Highlight : Const.Colour.Foreground)
                             .frame(width: 36, height: Const.Dim.SViewHeight)
-                            .cornerRadius(10, corners: [.topLeft, .bottomLeft])
+                            .cornerRadius(Const.Dim.CornerRadius, corners: [.topLeft, .bottomLeft])
                             .transition(Const.Animation.Fade)
                         
                         Spacer().frame(width: 3)
@@ -39,7 +39,7 @@ struct ComputerSettingView: View {
                         Rectangle()
                             .foregroundColor(tess.AIPlayer == .nought ? Const.Colour.Highlight : Const.Colour.Foreground)
                             .frame(width: 36, height: Const.Dim.SViewHeight)
-                            .cornerRadius(10, corners: [.topRight, .bottomRight])
+                            .cornerRadius(Const.Dim.CornerRadius, corners: [.topRight, .bottomRight])
                             .transition(Const.Animation.Fade)
                     }.frame(width: 72)
                     

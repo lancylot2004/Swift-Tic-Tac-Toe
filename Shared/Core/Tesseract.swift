@@ -28,6 +28,7 @@ class Tesseract: ObservableObject {
     @Published var AIDifficulty: AIState = .noob
     
     @Published var multiplayerEnabled = false
+    @Published var settingsOpened = false
     
     /// Haptics
     private let generator = UIImpactFeedbackGenerator(style: .heavy)
