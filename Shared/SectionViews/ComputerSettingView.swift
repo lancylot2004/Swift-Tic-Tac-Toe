@@ -115,7 +115,7 @@ struct ComputerSettingView: View {
                             .foregroundColor(.primary.opacity(0.3))
                         
                         Text("Expert")
-                            .font(.system(size: 14, weight: .bold, design: .rounded))
+                            .font(.system(size: 13, weight: .bold, design: .rounded))
                             .frame(width: 45, height: Const.Dim.SViewHeight)
                             .minimumScaleFactor(0.01)
                             .scaledToFill()
