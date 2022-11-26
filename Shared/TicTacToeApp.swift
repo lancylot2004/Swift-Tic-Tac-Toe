@@ -20,7 +20,7 @@ struct TicTacToeApp: App {
         #elseif os(macOS)
         WindowGroup {
             MainView()
-                .frame(width: Const.Dim.GameWidth, height: 4 * Const.Dim.GameSpacing + Const.Dim.GridSize + Const.Dim.LViewHeight + 2 * Const.Dim.SViewHeight)
+                .frame(width: Const.Dim.GameWidth, height: 4 * Const.Dim.LSpacing + Const.Dim.GridSize + Const.Dim.LViewHeight + 2 * Const.Dim.SViewHeight)
                 .fixedSize()
         }.windowStyle(.hiddenTitleBar)
         #endif

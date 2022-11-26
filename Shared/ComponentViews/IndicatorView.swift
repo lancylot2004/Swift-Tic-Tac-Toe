@@ -16,7 +16,7 @@ struct IndicatorView: View {
     var body: some View {
         HStack {
             Rectangle()
-                .frame(width: indicatorWidth, height: Const.Dim.GameSpacing)
+                .frame(width: indicatorWidth, height: Const.Dim.LSpacing)
                 .foregroundColor(indicatorColour)
                 .cornerRadius(Const.Dim.CornerRadius)
                 .onChange(of: tess.resetCountdown) { newValue in

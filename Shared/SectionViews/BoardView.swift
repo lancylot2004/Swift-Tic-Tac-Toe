@@ -40,7 +40,7 @@ struct BoardView: View {
                     }
                 }
                 .coordinateSpace(name: "grid")
-                .frame(width: Const.Dim.GridSize - Const.Dim.GameSpacing, height: Const.Dim.GridSize - Const.Dim.GameSpacing)
+                .frame(width: Const.Dim.GridSize - Const.Dim.LSpacing, height: Const.Dim.GridSize - Const.Dim.LSpacing)
                 
                 VStack {
                     Spacer()
@@ -68,9 +68,9 @@ struct BoardView: View {
                             ForEach(0..<3, id: \.self) {j in
                                 CellView(i, j)
                             }
-                        }.frame(width: Const.Dim.GridSize - Const.Dim.GameSpacing)
+                        }.frame(width: Const.Dim.GridSize - Const.Dim.LSpacing)
                     }
-                }.frame(width: Const.Dim.GridSize - Const.Dim.GameSpacing, height: Const.Dim.GridSize - Const.Dim.GameSpacing)
+                }.frame(width: Const.Dim.GridSize - Const.Dim.LSpacing, height: Const.Dim.GridSize - Const.Dim.LSpacing)
             }.frame(width: Const.Dim.GridSize, height: Const.Dim.GridSize)
         }
     }

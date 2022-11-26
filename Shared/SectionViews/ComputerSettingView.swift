@@ -80,7 +80,7 @@ struct ComputerSettingView: View {
                     }
                 }
                 
-                Spacer().frame(width: Const.Dim.GameSpacing)
+                Spacer().frame(width: Const.Dim.LSpacing)
                 
                 /// Difficulty Settings
                 ZStack {
@@ -91,7 +91,7 @@ struct ComputerSettingView: View {
                             .cornerRadius(Const.Dim.CornerRadius, corners: [.topLeft, .bottomLeft])
                             .transition(Const.Animation.Fade)
                         
-                        Spacer().frame(width: 3)
+                        Spacer().frame(width: Const.Dim.SSpacing)
                         
                         Rectangle()
                             .foregroundColor(tess.AIDifficulty == .expert ? Const.Colour.Highlight : Const.Colour.Foreground)
@@ -111,7 +111,7 @@ struct ComputerSettingView: View {
                             .onTapGesture { withAnimation { tess.AIDifficulty = .noob } }
                         
                         Rectangle()
-                            .frame(width: 3, height: Const.Dim.SViewHeight)
+                            .frame(width: Const.Dim.SSpacing, height: Const.Dim.SViewHeight)
                             .foregroundColor(.primary.opacity(0.3))
                         
                         Text("Expert")

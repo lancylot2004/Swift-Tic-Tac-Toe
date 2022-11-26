@@ -18,28 +18,28 @@ struct MainView: View {
                 // Reset Indicator
                 IndicatorView()
                 
-                Spacer().frame(height: Const.Dim.GameSpacing)
+                Spacer().frame(height: Const.Dim.LSpacing)
                 
                 // Game Board
                 BoardView()
                 
-                Spacer().frame(height: Const.Dim.GameSpacing)
+                Spacer().frame(height: Const.Dim.LSpacing)
                 
                 // Score Board
-                HStack(spacing: Const.Dim.GameSpacing) {
+                HStack(spacing: Const.Dim.LSpacing) {
                     PlayerScoreView(.cross)
                     PlayerScoreView(.nought)
                 }.frame(height: Const.Dim.LViewHeight)
                 
-                Spacer().frame(height: Const.Dim.GameSpacing)
+                Spacer().frame(height: Const.Dim.LSpacing)
                 
                 // Resets
-                HStack(spacing: Const.Dim.GameSpacing) {
+                HStack(spacing: Const.Dim.LSpacing) {
                     ResetView(String(localized: "Reset Board"), .leftToRight, "goforward", .grid)
                     ResetView(String(localized: "Reset Score"), .rightToLeft, "gobackward", .score)
                 }.frame(height: Const.Dim.SViewHeight)
                 
-                Spacer().frame(height: Const.Dim.GameSpacing)
+                Spacer().frame(height: Const.Dim.LSpacing)
                 
                 // AI Controls
                 ComputerSettingView()

@@ -20,7 +20,9 @@ struct Const {
     /// Dimensions
     struct Dim {
         static let GameWidth: CGFloat = 310
-        static let GameSpacing: CGFloat = 10
+        static let LSpacing: CGFloat = 10
+        static let MSpacing: CGFloat = 5
+        static let SSpacing: CGFloat = 3
         
         static let GridSize: CGFloat = 265
         static let GridSpacing: CGFloat = 5
