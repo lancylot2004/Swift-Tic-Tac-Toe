@@ -43,6 +43,11 @@ struct MainView: View {
                 
                 // AI Controls
                 ComputerSettingView()
+                
+                Spacer().frame(height: Const.Dim.LSpacing)
+                
+                // Multiplayer Controls
+                //MultiplayerView()
             }
             
             // Locking Cover

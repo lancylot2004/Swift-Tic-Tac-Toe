@@ -12,13 +12,13 @@ struct CellView: View {
     
     private var row: Int
     private var column: Int
-    @State private var state: CellState
+    @State private var state: Grid.State
     @State private var locked: Bool = false
     
     init(_ row: Int, _ column: Int) {
         self.row = row
         self.column = column
-        self.state = Tesseract.global.grid[row][column]
+        self.state = Tesseract.global.grid[row, column]
     }
     
     var body: some View {
@@ -56,17 +56,16 @@ struct CellView: View {
                         
                         withAnimation(Animation.easeInOut(duration: 0.3)) {
                             self.state = tess.player
-                            tess.grid[row][column] = self.state
-                            tess.checkGrid(tess.grid)
+                            tess.grid[row, column] = self.state
+                            tess.processTurn()
                             tess.togglePlayer()
-                            tess.AIProcess()
                         }
                     }
             }
         }
         .frame(width: Const.Dim.SquareSize, height: Const.Dim.SquareSize)
-        .onChange(of: tess.grid[row][column]) { _ in
-            self.state = tess.grid[row][column]
+        .onChange(of: tess.grid[row, column]) { _ in
+            self.state = tess.grid[row, column]
             self.locked = self.state == .cross || self.state == .nought
         }
         .onChange(of: tess.locked) { newValue in

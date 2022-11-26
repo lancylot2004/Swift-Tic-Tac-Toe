@@ -19,20 +19,20 @@ struct BoardView: View {
             
             ZStack {
                 GeometryReader { geometry in
-                    if tess.winning && tess.winningPair.4 != .none {
+                    if tess.winInfo.winner != .none {
                         Path { highlight in
                             let rect = geometry.frame(in: CoordinateSpace.named("grid"))
                             // a + bx
                             let a: CGFloat = (Const.Dim.SquareSize / 2)
                             let b: CGFloat = Const.Dim.SquareSize + (Const.Dim.GridSpacing * 3)
                             highlight.move(to: CGPoint(
-                                x: rect.minX + a + b * CGFloat(tess.winningPair.1),
-                                y: rect.minY + a + b * CGFloat(tess.winningPair.0))
+                                x: rect.minX + a + b * CGFloat(tess.winInfo.startCell.1),
+                                y: rect.minY + a + b * CGFloat(tess.winInfo.startCell.0))
                             )
 
                             highlight.addLine(to: CGPoint(
-                                x: rect.minX + a + b * CGFloat(tess.winningPair.3),
-                                y: rect.minY + a + b * CGFloat(tess.winningPair.2))
+                                x: rect.minX + a + b * CGFloat(tess.winInfo.endCell.1),
+                                y: rect.minY + a + b * CGFloat(tess.winInfo.endCell.1))
                             )
                         }
                         .stroke(style: StrokeStyle(lineWidth: Const.Dim.SquareSize, lineCap: .round))
