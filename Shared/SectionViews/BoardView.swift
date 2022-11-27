@@ -32,7 +32,7 @@ struct BoardView: View {
 
                             highlight.addLine(to: CGPoint(
                                 x: rect.minX + a + b * CGFloat(tess.winInfo.endCell.1),
-                                y: rect.minY + a + b * CGFloat(tess.winInfo.endCell.1))
+                                y: rect.minY + a + b * CGFloat(tess.winInfo.endCell.0))
                             )
                         }
                         .stroke(style: StrokeStyle(lineWidth: Const.Dim.SquareSize, lineCap: .round))
