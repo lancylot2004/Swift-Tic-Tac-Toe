@@ -7,19 +7,6 @@
 
 import Foundation
 
-enum CellState {
-    case none
-    case cross
-    case nought
-}
-
-enum gridState {
-    case crossVictory
-    case noughtVictory
-    case draw
-    case ongoing
-}
-
 enum AIState {
     case noob
     case expert
