@@ -56,6 +56,7 @@ struct ComputerSettingView: View {
                         }
                         .frame(width: 35, height: Const.Dim.SViewHeight)
                         .onTapGesture {
+                            if tess.locked { return }
                             withAnimation {
                                 tess.AIPlayer = (tess.AIPlayer == .none || tess.AIPlayer == .nought) ? .cross : .none
                             }
@@ -71,6 +72,7 @@ struct ComputerSettingView: View {
                             .strokeBorder(.primary, lineWidth: 3)
                             .frame(width: 35, height: 28, alignment: .center)
                             .onTapGesture {
+                                if tess.locked { return }
                                 withAnimation {
                                     tess.AIPlayer = (tess.AIPlayer == .none || tess.AIPlayer == .cross) ? .nought : .none
                                 }
