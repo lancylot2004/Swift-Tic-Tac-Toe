@@ -60,7 +60,7 @@ class Tesseract: ObservableObject {
     
     public func processTurn() {
         winInfo = grid.check()
-        if winInfo.winner != .none {
+        if grid.isFull() || winInfo.winner != .none {
             switch winInfo.winner {
                 case .cross: crossScore += 1
                 case .nought: noughtScore += 1
@@ -69,7 +69,7 @@ class Tesseract: ObservableObject {
             
             player = .none
             locked = true
-            resetCountdownFull = 3.5
+            resetCountdownFull = 2.5
             
             let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
                 resetCountdown -= 0.01
@@ -87,6 +87,7 @@ class Tesseract: ObservableObject {
             }
         }
         
+        self.togglePlayer()
         AIProcess()
     }
     
@@ -100,7 +101,7 @@ class Tesseract: ObservableObject {
         if player != AIPlayer { return }
         
         locked = true
-        resetCountdownFull = 0.7
+        resetCountdownFull = AIDifficulty == .expert ? 0.7 : 0.3
         
         let _ = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true) { [self] timer in
             resetCountdown -= 0.01
@@ -111,24 +112,27 @@ class Tesseract: ObservableObject {
             }
         }
         
-        let _ = Timer.scheduledTimer(withTimeInterval: resetCountdownFull, repeats: false) { [self] _ in
-            switch AIDifficulty {
-                case .noob: noobTurn()
-                case .expert: expertTurn()
+        let _ = Timer.scheduledTimer(withTimeInterval: resetCountdownFull * 0.4, repeats: false) { [self] _ in
+            DispatchQueue.main.async { [self] in
+                switch AIDifficulty {
+                    case .noob: noobTurn()
+                    case .expert: expertTurn()
+                }
+                
+                processTurn()
+                locked = false
             }
-            
-            processTurn()
-            locked = false
         }
     }
     
     private func noobTurn() {
+        if grid.isFull() { return }
+        
         while true {
             let i: Int = Int.random(in: 0...2)
             let j: Int = Int.random(in: 0...2)
             if grid[i, j] == .none {
                 grid[i, j] = player
-                togglePlayer()
                 return
             }
         }
@@ -136,13 +140,56 @@ class Tesseract: ObservableObject {
     
     /// Uses minimax to completely over-engineer tic-tac-toe.
     private func expertTurn() {
-        noobTurn()
-//        let bestSolution = minimax(grid: self.grid)
-//
-//        if bestSolution.1 != -1 && bestSolution.2 != -1 {
-//            self.grid[bestSolution.1][bestSolution.2] = player
-//            togglePlayer()
-//        }
+        if grid.isFull() { return }
+        
+        // Cheating: Pre-programme first move as cross.
+        if grid.isEmpty() && player == .cross {
+            grid[0, 0] = player
+            return
+        }
+        
+        var bestScore = -1000
+        var bestMove = (-1, -1)
+        
+        for row in 0..<3 {
+            for column in 0..<3 {
+                if grid[row, column] == .none {
+                    grid[row, column] = player
+                    let moveScore = minimax(board: grid, isMax: false, player: player, depth: 0, alpha: -1000, beta: 1000)
+                    grid[row, column] = .none
+                    if moveScore > bestScore {
+                        bestScore = moveScore
+                        bestMove = (row, column)
+                    }
+                }
+            }
+        }
+        
+        if bestMove != (-1, -1) {
+            grid[bestMove.0, bestMove.1] = player
+        }
+    }
+    
+    private func minimax(board: Grid, isMax: Bool, player: Grid.State, depth: Int, alpha: Int, beta: Int) -> Int {
+        let winner = board.check().winner
+        if winner != .none { return board.check().winner == player ? 10 - depth : -10 + depth}
+        if board.isFull() { return 0 }
+        
+        var bestScore = 1000 * (isMax ? -1 : 1)
+        
+        outerLoop: for row in 0..<3 {
+            for column in 0..<3 {
+                if board[row, column] == .none {
+                    board[row, column] = isMax ? player : player.other()
+                    let minimaxResult = minimax(board: board, isMax: !isMax, player: player, depth: depth + 1, alpha: alpha, beta: beta)
+                    bestScore = isMax ? max(bestScore, minimaxResult) : min(bestScore, minimaxResult)
+                    if (!isMax ? min(beta, bestScore) : beta) <= (isMax ? max(alpha, bestScore) : alpha) { break outerLoop }
+                    board[row, column] = .none
+                }
+            }
+        }
+        
+        return bestScore
     }
     
     /// Singleton

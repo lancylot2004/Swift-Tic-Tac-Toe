@@ -58,7 +58,6 @@ struct CellView: View {
                             self.state = tess.player
                             tess.grid[row, column] = self.state
                             tess.processTurn()
-                            tess.togglePlayer()
                         }
                     }
             }
