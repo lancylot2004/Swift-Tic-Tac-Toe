@@ -44,12 +44,6 @@ struct MainView: View {
                 Spacer().frame(height: Const.Dim.LSpacing)
                 
                 ComputerSettingView()
-                
-                Spacer().frame(height: Const.Dim.LSpacing)
-                
-                MultiplayerView()
-            }.popover(isPresented: $tess.settingsOpened) {
-                SettingsView()
             }
             
             // Locking Cover

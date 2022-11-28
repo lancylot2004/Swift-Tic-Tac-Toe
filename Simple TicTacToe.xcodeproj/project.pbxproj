@@ -12,8 +12,6 @@
 		8A64919C293151CC004B65C2 /* IndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A64919B293151CC004B65C2 /* IndicatorView.swift */; };
 		8A6491A8293163FA004B65C2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A6491A6293163FA004B65C2 /* Localizable.strings */; };
 		8A6491AB293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A6491A9293163FA004B65C2 /* Simple TicTacToe (iOS)-InfoPlist.strings */; };
-		8A6491B5293228C7004B65C2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491B4293228C7004B65C2 /* SettingsView.swift */; };
-		8A6491B729322984004B65C2 /* MultiplayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491B629322984004B65C2 /* MultiplayerView.swift */; };
 		8A6491B92932879B004B65C2 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491B82932879B004B65C2 /* Structures.swift */; };
 		8A6491BB293287AC004B65C2 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491BA293287AC004B65C2 /* Utilities.swift */; };
 		8A6491BD29328820004B65C2 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6491BC29328820004B65C2 /* Grid.swift */; };
@@ -42,8 +40,6 @@
 		8A6491B129316507004B65C2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
 		8A6491B22931650B004B65C2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		8A6491B32931650B004B65C2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Simple TicTacToe (iOS)-InfoPlist.strings"; sourceTree = "<group>"; };
-		8A6491B4293228C7004B65C2 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		8A6491B629322984004B65C2 /* MultiplayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplayerView.swift; sourceTree = "<group>"; };
 		8A6491B82932879B004B65C2 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		8A6491BA293287AC004B65C2 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		8A6491BC29328820004B65C2 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
@@ -88,7 +84,6 @@
 			children = (
 				8A649197293150B4004B65C2 /* BoardView.swift */,
 				8A6491992931512D004B65C2 /* ComputerSettingView.swift */,
-				8A6491B629322984004B65C2 /* MultiplayerView.swift */,
 			);
 			path = SectionViews;
 			sourceTree = "<group>";
@@ -133,7 +128,6 @@
 				8A6491942931506C004B65C2 /* ComponentViews */,
 				F5A3D59527FB22B600DE2819 /* TicTacToeApp.swift */,
 				F5A3D59627FB22B600DE2819 /* MainView.swift */,
-				8A6491B4293228C7004B65C2 /* SettingsView.swift */,
 				F5A3D59727FB22BB00DE2819 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -163,6 +157,8 @@
 			dependencies = (
 			);
 			name = "Simple TicTacToe (iOS)";
+			packageProductDependencies = (
+			);
 			productName = "Simple TicTacToe (iOS)";
 			productReference = F5A3D59C27FB22BB00DE2819 /* TicTacToe.app */;
 			productType = "com.apple.product-type.application";
@@ -197,6 +193,8 @@
 				"zh-Hans",
 			);
 			mainGroup = F5A3D58F27FB22B600DE2819;
+			packageReferences = (
+			);
 			productRefGroup = F5A3D59D27FB22BB00DE2819 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -234,11 +232,9 @@
 				8A64919A2931512D004B65C2 /* ComputerSettingView.swift in Sources */,
 				8A6491BD29328820004B65C2 /* Grid.swift in Sources */,
 				F53A2E482801EC29009C59CF /* Constants.swift in Sources */,
-				8A6491B729322984004B65C2 /* MultiplayerView.swift in Sources */,
 				8A649198293150B4004B65C2 /* BoardView.swift in Sources */,
 				F5A3D5BD27FB449700DE2819 /* Tesseract.swift in Sources */,
 				F5A3D5A527FB22BB00DE2819 /* TicTacToeApp.swift in Sources */,
-				8A6491B5293228C7004B65C2 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +388,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Simple TicTacToe (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = FRBS8WNB5F;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -414,7 +410,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.2;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = dev.lancy.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = dev.lancy.tictactoe;
@@ -436,7 +432,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Simple TicTacToe (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = FRBS8WNB5F;
 				ENABLE_PREVIEWS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -458,7 +454,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.6.2;
+				MARKETING_VERSION = 1.6.4;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.lancylot.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = dev.lancy.tictactoe;
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=macosx*]" = dev.lancy.tictactoe;
